@@ -1,0 +1,30 @@
+.root {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0px;
+}
+
+.header > :nth-child(2) {
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+.container {
+    margin: 50px;
+    max-width: 1000px;
+}
+
+.footer {
+    margin: 20px;
+}
