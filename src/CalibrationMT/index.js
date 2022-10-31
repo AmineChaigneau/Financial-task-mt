@@ -49,7 +49,7 @@ const CalibrationMT = ({ update_calibration, subject_id }) => {
     }
 
     const handleRedirect = () => {
-        navigate('/transition')
+        navigate('/form')
     }
 
     return (

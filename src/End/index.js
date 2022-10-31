@@ -18,34 +18,6 @@ const downloadFile = ({ data, fileName, fileType }) => {
     a.remove()
 }
 
-const exportToCsv = (data, name) => {
-
-    console.log(data)
-    // Headers for each column
-    let headers = ['id_trial, stimuli, time, choice, output, invert, height, width']
-
-    // Convert users data to a csv
-    let resCsv = data.reduce((acc, df) => {
-        acc.push([df.id_trial, df.stimuli, df.time, df.choice, df.output, df.invert, df.height_device, df.width_device].join(','))
-        return acc
-    }, [])
-
-    downloadFile({
-        data: [...headers, ...resCsv].join('\n'),
-        fileName: [name, 'results.csv'].join('_'),
-        fileType: 'text/csv',
-    })
-}
-
-const exportToJson = (e, name) => {
-    downloadFile({
-        data: JSON.stringify(e),
-        fileName: [name, 'results.json'].join('_'),
-        fileType: 'text/json',
-    })
-}
-
-
 const Confeti = ({ children }) => {
     return (
         <div className={style.hoverme}>
@@ -104,11 +76,43 @@ const Confeti = ({ children }) => {
     )
 }
 
-const End = ({ export_trial }) => {
+const End = ({ export_trial, form_data }) => {
+
+    const subject_id = String(export_trial.subject_id);
+
+    const form = form_data.map(function (id) { return id.value }).concat(subject_id)
+
+    const replacer = function (key, value) { return value === null ? '' : value }
 
     const handleClick = () => {
-        exportToCsv(export_trial.trials, export_trial.subject_id)
-        exportToJson(export_trial, export_trial.subject_id)
+
+        const json = export_trial.trials
+
+        const fields = Object.keys(json[0])
+
+        const tracking = json.map(function (row) {
+            return fields.map(function (fieldName) {
+                return JSON.stringify(row[fieldName], replacer)
+            })
+        })
+
+        const csvExport = tracking.map(function (id) {
+            const newArr = [].concat(id, form)
+
+            return newArr
+        })
+
+        const headers = ['id_trial; stimuli; time; tracking; choice; output; invert; height; width; q1; q2; q3; q4; q5; q6; q7; q8; q9; q10; q11; subject_id']
+
+        const Export = csvExport.map(function(row) {
+            return row.join(';')
+        })
+
+        downloadFile({
+            data: [...headers, ...Export].join('\n'),
+            fileName: [subject_id, 'results.csv'].join('_'),
+            fileType: 'text/csv',
+        })
     }
 
     return (
@@ -130,7 +134,8 @@ const End = ({ export_trial }) => {
 }
 
 const mapStateToProps = state => ({
-    export_trial: state.exportReducer
+    export_trial: state.exportReducer,
+    form_data: state.formReducer.form
 })
 
 export default connect(mapStateToProps)(End)

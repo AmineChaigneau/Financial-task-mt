@@ -14,6 +14,7 @@ import Stimuli from './Stimuli'
 import Choice from './Choice'
 import Temp from './Temp'
 import End from './End'
+import FullScreen from "./utils/fullScreen";
 
 const theme = {
   colors: {
@@ -31,7 +32,7 @@ function App() {
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <div>
+        <FullScreen>
           <Routes>
             <Route path="/" element={ <Home />} />
             <Route path="/form" element={ <Form />} />
@@ -44,7 +45,7 @@ function App() {
             <Route path="/temp" element={ <Temp />} />
             <Route path="/end" element={ <End />} />
           </Routes>
-        </div>
+        </FullScreen>
       </ThemeProvider>
     </Router>
   );
