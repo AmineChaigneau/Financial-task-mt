@@ -33,7 +33,9 @@ const FullScreen = ({ children }) => {
     }, [isFullscreen, fullScreenMode])
 
     return (
-        <div ref={maximizeElement} style={{ background: '#fafafa' }}>
+        <div ref={maximizeElement} 
+        style={{ background: '#fff' }}
+        >
             {errorMessage ? (
                 <div>
                     Le mode plein écran (fullscreen mode) n'est pas supporté par votre navigateur.
