@@ -76,7 +76,7 @@ const Confeti = ({ children }) => {
     )
 }
 
-const End = ({ export_trial, form_data }) => {
+const End = ({ export_trial, form_data, export_calibration }) => {
 
     const subject_id = String(export_trial.subject_id);
 
@@ -115,6 +115,29 @@ const End = ({ export_trial, form_data }) => {
         })
     }
 
+    const handleClickCalibration = () => {
+
+        const json = export_calibration.calibration
+
+        const headers = ['time, x, y, id, subject_id']
+
+        const tracking = json.map((id, key) => {
+            return id.map(item => {
+                const arr = Object.values(item)
+                const newArr = [].concat(arr, key, subject_id)
+                return newArr.toString()
+            }).join('\n');
+        });
+
+        // console.log(tracking)
+
+        downloadFile({
+            data: [...headers, ...tracking].join('\n'),
+            fileName: [subject_id, 'calibration.csv'].join('_'),
+            fileType: 'text/csv',
+        })
+    }
+
     return (
         <div className={style.root}>
             <div className={style.container}>
@@ -128,6 +151,9 @@ const End = ({ export_trial, form_data }) => {
                 <Button onClick={handleClick}>
                     Telecharger résultats
                 </Button>
+                <Button onClick={handleClickCalibration}>
+                    Telecharger calibration
+                </Button>
             </div>
         </div>
     )
@@ -135,6 +161,7 @@ const End = ({ export_trial, form_data }) => {
 
 const mapStateToProps = state => ({
     export_trial: state.exportReducer,
+    export_calibration: state.calibrationReducer,
     form_data: state.formReducer.form
 })
 

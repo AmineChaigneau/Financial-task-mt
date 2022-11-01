@@ -14,6 +14,10 @@ const Home = ({ resetStore, subject_id_global }) => {
 
     const navigate = useNavigate()
 
+    const handleClick = () => {
+        navigate('/consigne')
+    }
+
     return (
         <div className={style.root}>
             <div className={style.container}>
@@ -32,7 +36,7 @@ const Home = ({ resetStore, subject_id_global }) => {
                 </Typography>
             </div>
             <div className={style.button}>
-                <Button onClick={() => navigate('/consigne')} disabled={false}>
+                <Button onClick={handleClick} disabled={false}>
                     Continuer
                 </Button>
             </div>

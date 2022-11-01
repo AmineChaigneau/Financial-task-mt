@@ -37,20 +37,28 @@ const Choice = ({ update_tracking, trial_id_global }) => {
 
     const [tracker, setTracker] = useState([]);
 
+    const [reactionTime, setReactionTime] = useState(0);
+
     const handleClick = () => {
         setDisabled(false)
         setTracking(true)
     }
 
     const handleClickLeft = () => {
+        const d1 = new Date();
+        const end = d1.getTime();
+
         setTracking(false)
-        update_tracking({ time: 0, tracking: tracker, choice: 'non', output: false, invert: invert })
+        update_tracking({ time: end-reactionTime, tracking: tracker, choice: 'non', output: false, invert: invert })
         navigate('/temp')
     }
 
     const handleClickRight = () => {
+        const d1 = new Date();
+        const end = d1.getTime();
+
         setTracking(false)
-        update_tracking({ time: 0, tracking: tracker, choice: 'oui', output: true, invert: invert })
+        update_tracking({ time: end-reactionTime, tracking: tracker, choice: 'oui', output: true, invert: invert })
         navigate('/temp')
     }
 
@@ -58,6 +66,11 @@ const Choice = ({ update_tracking, trial_id_global }) => {
         if (isInitialMount.current) {
             isInitialMount.current = false;
         } else {
+            const d = new Date();
+            const start = d.getTime();
+
+            setReactionTime(start)
+
             const prob = getRandomArbitrary(0, 1)
             setInvert(prob > .5 ? true : false)
         }

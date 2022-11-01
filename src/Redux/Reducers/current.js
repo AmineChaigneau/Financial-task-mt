@@ -1,4 +1,4 @@
-import { UPDATE_CURRENT_SUCCESS, UPDATE_CURRENT_FAIL, UPDATE_TRACKING_SUCCESS, UPDATE_TRACKING_FAIL } from '../Actions/types'
+import { UPDATE_CURRENT_SUCCESS, UPDATE_CURRENT_FAIL, UPDATE_TRACKING_SUCCESS, UPDATE_TRACKING_FAIL, UPDATE_SCREEN, UPDATE_SCREEN_FAIL } from '../Actions/types'
 
 const initialState = {
     id_trial: 0,
@@ -36,6 +36,16 @@ export default function currentReducer(state = initialState, action) {
                 invert: payload.invert
             }
         case UPDATE_TRACKING_FAIL:
+            return {
+                ...state
+            }
+        case UPDATE_SCREEN:
+            return {
+                ...state,
+                height_device: payload.height,
+                width_device: payload.width,
+            }
+        case UPDATE_SCREEN_FAIL:
             return {
                 ...state
             }

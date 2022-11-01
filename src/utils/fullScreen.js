@@ -4,8 +4,21 @@ import { Button } from '../Component/button.styled'
 import Dialog from "../Component/dialog.styled";
 import style from "./fullScreen.module.css"
 import { Typography } from "../Component/styles/typography.styled";
+import { useWindowDimensions } from '../hook'
+import { update_screen } from '../Redux/Actions/current'
+import { connect } from "react-redux";
 
-const FullScreen = ({ children }) => {
+const FullScreen = ({ children, update_screen }) => {
+
+    const { height, width } = useWindowDimensions();
+
+    const screenUpdate = useCallback(() => {
+        update_screen({ height: height, width: width })
+    }, [update_screen, height, width])
+
+    useEffect(() => {
+        screenUpdate();
+    }, [screenUpdate])
 
     const maximizeElement = useRef(null);
     let isFullscreen, setIsFullscreen;
@@ -33,8 +46,8 @@ const FullScreen = ({ children }) => {
     }, [isFullscreen, fullScreenMode])
 
     return (
-        <div ref={maximizeElement} 
-        style={{ background: '#fff' }}
+        <div ref={maximizeElement}
+            style={{ background: '#fff' }}
         >
             {errorMessage ? (
                 <div>
@@ -62,4 +75,8 @@ const FullScreen = ({ children }) => {
     )
 }
 
-export default FullScreen
+const mapStateToProps = state => ({
+    subject_id: state.exportReducer.subject_id
+})
+
+export default connect(mapStateToProps, { update_screen })(FullScreen)
