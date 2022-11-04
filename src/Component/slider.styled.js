@@ -228,13 +228,14 @@ const StyledLabel = styled.label`
 const Square = ({
   children,
   value,
-  onChange
+  onChange,
+  ...props
 }) => {
 
   return (
     <div>
       <StyledLabel>
-        <Radio type='radio' value={value} onChange={onChange} name="radio"></Radio>
+        <Radio type='radio' value={value} onChange={onChange} name="radio"  {... props}></Radio>
         <Span>{children}</Span>
       </StyledLabel>
     </div>

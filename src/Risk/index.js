@@ -5,8 +5,10 @@ import { Typography } from "../Component/styles/typography.styled";
 import { Button } from "../Component/button.styled";
 import { TextArea } from "../Component/textarea.styled";
 import { useNavigate } from 'react-router-dom';
+import { update_risk_scale } from '../Redux/Actions/form'
+import { connect } from "react-redux";
 
-const Risk = () => {
+const Risk = ({ subject_id, update_risk_scale }) => {
 
     // const [value, setValue] = useState(50);
 
@@ -51,6 +53,7 @@ const Risk = () => {
 
     const onSubmit = e => {
         e.preventDefault();
+        update_risk_scale({ subject_id: subject_id, form: formData, slider: slider})
         console.log(slider)
         console.log(formData)
         navigate('/consigne')
@@ -108,4 +111,8 @@ const Risk = () => {
     )
 }
 
-export default Risk;
+const mapStateToProps = state => ({
+    subject_id: state.exportReducer.subject_id,
+})
+
+export default connect(mapStateToProps, { update_risk_scale })(Risk);

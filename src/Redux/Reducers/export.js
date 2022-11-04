@@ -14,6 +14,14 @@ export default function exportReducer(state = initialState, action) {
             return {
                 ...state
             }
+        case LOAD_EXPORT_FAIL:
+            return {
+                ...state
+            }
+        case UPDATE_EXPORT_FAIL:
+            return {
+                ...state
+            }
         case UPDATE_EXPORT_SUCCESS:
             return {
                 ...state,

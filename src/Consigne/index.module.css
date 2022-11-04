@@ -50,3 +50,20 @@
 .footer {
     margin: 20px;
 }
+
+.imgContainer {
+    height: 100%;
+    width: 100%;
+}
+
+.imgContainer > img {
+    width: 100%;
+    opacity: 1;
+}
+
+.buttonImg {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}

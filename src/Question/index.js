@@ -6,8 +6,9 @@ import { Typography } from "../Component/styles/typography.styled";
 import { Button } from "../Component/button.styled";
 import { RangeSlider, RangeNumber } from "../Component/slider.styled";
 import { RadioButton } from "../Component/radio.styled";
+import { update_form_trial } from '../Redux/Actions/form';
 
-const Trois = ({ slider, onClick }) => {
+const Trois = ({ slider, onClick, onChange, value }) => {
 
     return (
         <>
@@ -15,7 +16,7 @@ const Trois = ({ slider, onClick }) => {
                 <div className={style.header}>
                     <Typography variant={'h4'}>L'information présentée était-elle juste suffisante pour prendre votre décision d'investissement ?</Typography>
                 </div>
-                <RangeSlider name={''} max={9} />
+                <RangeSlider name={''} value={value} onChange={onChange} max={9} />
                 <div className={style.label}>
                     <p>Pas du tout suffisant / Vous auriez besoin d'informations supplémentaire pour prendre une décision</p>
                     <p>Complément suffisant</p>
@@ -28,7 +29,7 @@ const Trois = ({ slider, onClick }) => {
     )
 }
 
-const Deux = ({ slider, onClick }) => {
+const Deux = ({ slider, onClick, value, onChange }) => {
 
     return (
         <>
@@ -37,7 +38,7 @@ const Deux = ({ slider, onClick }) => {
                     <Typography variant={'h4'}>Vous souvenez-vous du <b>niveau de risque</b> indiqué du fonds d'investissement que vous venez de considérer ? Veuillez l'indiquer à l'aide de l'échelle ci-dessous.</Typography>
                 </div>
                 <div className={style.rangeNumber}>
-                    <RangeNumber name={''} max={7} />
+                    <RangeNumber name={''} max={7} value={value} onChange={onChange}/>
                 </div>
             </div>
             <div className={style.button}>
@@ -47,7 +48,7 @@ const Deux = ({ slider, onClick }) => {
     )
 }
 
-const Un = ({ slider, onClick }) => {
+const Un = ({ slider, onClick, onChange, value }) => {
 
     return (
         <>
@@ -55,7 +56,7 @@ const Un = ({ slider, onClick }) => {
                 <div className={style.header}>
                     <Typography variant={'h4'}>Veuillez indiquer votre niveau de confiance concernant cette décision sur l'échelle ci-dessous.</Typography>
                 </div>
-                <RangeSlider name={''} max={9} />
+                <RangeSlider name={''} value={value} onChange={onChange} max={9} />
                 <div className={style.label}>
                     <p>Complétement incertain</p>
                     <p>Complément sûr</p>
@@ -68,14 +69,14 @@ const Un = ({ slider, onClick }) => {
     )
 }
 
-const Quatre = ({ slider, onClick }) => {
+const Quatre = ({ slider, onClick, value, onChange }) => {
 
     return (
         <div className={style.container}>
             <div className={style.header}>
                 <Typography variant={'h4'}>Quel type d'information a été le plus important pour votre décision ?</Typography>
             </div>
-            <form className={style.form}>
+            <form className={style.form} value={value} onChange={onChange}>
                 <RadioButton value={'1'} label={"Frais"} />
                 <RadioButton value={'2'} label={"Profil de risque et de rendement"} />
                 <RadioButton value={'3'} label={"Objectifs et politique d'investissement"} />
@@ -90,36 +91,38 @@ const Quatre = ({ slider, onClick }) => {
 
 
 
-const Question = ({ nb_trial }) => {
+const Question = ({ nb_trial, update_form_trial }) => {
 
     const navigate = useNavigate();
 
+    const [value, setValue] = useState('')
+
     const handleRedirect = () => {
-        // update
+        update_form_trial(value)
         navigate('/stimuli')
     }
 
     const handleEnd = () => {
-        // update
+        update_form_trial(value)
         navigate('/scale')
     }
 
     return (
         <div className={style.root}>
             {nb_trial === 1 ? (
-                <Un onClick={handleRedirect} />
+                <Un onClick={handleRedirect} onChange={(e) => setValue(e.target.value)} value={value} />
             ) : (
                 <div className={style.root}>
                     {nb_trial === 6 ? (
-                        <Deux onClick={handleRedirect} />
+                        <Deux onClick={handleRedirect} onChange={(e) => setValue(e.target.value)} value={value}/>
                     ) : (
                         <div className={style.root}>
                             {nb_trial === 7 ? (
-                                <Trois onClick={handleRedirect} />
+                                <Trois onClick={handleRedirect} onChange={(e) => setValue(e.target.value)} value={value}/>
                             ) : (
                                 <div className={style.root}>
                                     {nb_trial === 12 ? (
-                                        <Quatre onClick={handleEnd} />
+                                        <Quatre onClick={handleEnd} onChange={(e) => setValue(e.target.value)} value={value}/>
                                     ) : (
                                         <div>Erreur</div>
                                     )}
@@ -138,4 +141,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps)(Question)
+export default connect(mapStateToProps, { update_form_trial })(Question)

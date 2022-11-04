@@ -5,8 +5,10 @@ import { Select } from '../Component/select.styled'
 import { Typography } from '../Component/styles/typography.styled'
 import { TextArea } from '../Component/textarea.styled'
 import style from './index.module.css'
+import { update_formulaire } from '../Redux/Actions/form'
+import { connect } from 'react-redux'
 
-const Formulaire = () => {
+const Formulaire = ({ subject_id, update_formulaire }) => {
 
     const navigate = useNavigate()
 
@@ -32,8 +34,7 @@ const Formulaire = () => {
 
     const onSubmit = e => {
         e.preventDefault();
-
-        console.log(formData)
+        update_formulaire({form : formData, subject_id: subject_id})
         navigate('/calibration')
     }
 
@@ -108,4 +109,10 @@ const Formulaire = () => {
     )
 }
 
-export default Formulaire;
+
+const mapStateToProps = state => ({
+    subject_id: state.exportReducer.subject_id
+})
+
+
+export default connect(mapStateToProps, { update_formulaire })(Formulaire);

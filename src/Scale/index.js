@@ -5,6 +5,8 @@ import { useState } from 'react'
 import { Button } from '../Component/button.styled'
 import { RadioButton } from '../Component/radio.styled'
 import { useNavigate } from 'react-router-dom';
+import { update_question_scale } from '../Redux/Actions/form'
+import { connect } from 'react-redux'
 
 const Un = ({ value, onChange }) => {
 
@@ -199,7 +201,7 @@ const Douze = ({ value, onChange }) => {
     )
 }
 
-const Scale = () => {
+const Scale = ({ subject_id, update_question_scale }) => {
 
     const navigate = useNavigate();
 
@@ -252,16 +254,11 @@ const Scale = () => {
     }
 
     const handleNext = () => {
-        setPage(page + 1)
-        handleChange();
-    }
-
-    const handleChange = () => {
-        console.log(data)
-        console.log(page)
+        setPage(page + 1);
     }
 
     const handleRedirect = () => {
+        update_question_scale({ subject_id: subject_id, form: data})
         navigate('/form')
         // push state
     }
@@ -287,4 +284,8 @@ const Scale = () => {
     )
 }
 
-export default Scale
+const mapStateToProps = state => ({
+    subject_id: state.exportReducer.subject_id,
+})
+
+export default connect(mapStateToProps, { update_question_scale })(Scale)
