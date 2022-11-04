@@ -73,11 +73,12 @@ export const Button = ({
   disabled,
   onClick,
   className,
+  type,
   ...props
 }) => {
   return (
     <StyledRoot {...props}>
-      <StyledButton className={className} onClick={onClick} disabled={disabled}>
+      <StyledButton type={type} className={className} onClick={onClick} disabled={disabled}>
         {children}
       </StyledButton>
     </StyledRoot>

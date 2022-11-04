@@ -13,11 +13,26 @@
     transform: translate(-50%, -50%);
 }
 
-.button {
+.container {
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
+    margin: 20px;
+    max-width: 750px;
+    width: 100%;
+}
+
+.button {
+    margin-top: 20px;
+}
+
+.image > img {
+    display: block;
+    max-width:450px;
+    max-height:300px;
+    width: auto;
+    height: auto;
 }
 
 .content {

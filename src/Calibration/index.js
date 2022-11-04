@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import style from './index.module.css'
 import { ReactComponent as Fixed } from '../Component/ressources/fixed.svg'
 import image from '../Component/ressources/charlie.png'
+import rules from '../Component/ressources/Training_rules.png'
 
 const Calibration = () => {
 
@@ -22,7 +23,7 @@ const Calibration = () => {
         navigate('/calibrationmt')
     }
 
-    const t = 10000;
+    const t = 5000;
 
     const handleClick = () => {
         setStart(true)
@@ -47,11 +48,20 @@ const Calibration = () => {
     return (
         <div className={style.root}>
             {!start ? (
-                <div className={style.button}>
-                    <Typography variant={'h4'}>Phase d'étalonnage</Typography>
-                    <Button onClick={handleClick}>
-                        Commencer
-                    </Button>
+                <div className={style.container}>
+                    <div className={style.image}>
+                        <img alt='' src={rules} />
+                    </div>
+                    <Typography variant={'h4'}>
+                        Au cours de cette expérience, nous utiliserons les technologies de suivi oculaire et de suivi de la souris.
+                        Avant de commencer, pour vous familiariser avec la manière dont l'étude est menée, nous ferons <b>quelques tentatives de test</b>.
+                        Cette phase permettera également l'étalonnage des instruments.
+                    </Typography>
+                    <div className={style.button}>
+                        <Button onClick={handleClick}>
+                            Commencer
+                        </Button>
+                    </div>
                 </div>
             ) : (
                 <>
@@ -64,7 +74,7 @@ const Calibration = () => {
                     ) : (
                         <div className={style.content}>
                             <div className={style.img}>
-                                <img alt='' src={image}/>
+                                <img alt='' src={image} />
                             </div>
                             <Button onClick={handleRedirect}>
                                 Continuer

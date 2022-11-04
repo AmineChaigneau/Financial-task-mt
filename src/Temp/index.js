@@ -13,9 +13,18 @@ const Temp = ({ update_res, current_trial, nb_trial }) => {
         if (isInitialMount.current) {
             isInitialMount.current = false;
         } else {
-            if(nb_trial === 11) {
+            if (nb_trial === 0) {
                 update_res(current_trial)
-                navigate('/end')
+                navigate('/question')
+            } else if (nb_trial === 5) {
+                update_res(current_trial)
+                navigate('/question')
+            } else if (nb_trial === 6) {
+                update_res(current_trial)
+                navigate('/question')
+            } else if (nb_trial === 11) {
+                update_res(current_trial)
+                navigate('/question')
             } else {
                 update_res(current_trial)
                 navigate('/stimuli')

@@ -15,7 +15,7 @@ const Home = ({ resetStore, subject_id_global }) => {
     const navigate = useNavigate()
 
     const handleClick = () => {
-        navigate('/consigne')
+        navigate('/formulaire')
     }
 
     return (
@@ -26,7 +26,7 @@ const Home = ({ resetStore, subject_id_global }) => {
                     <Typography variant={'h3'}><i>{subject_id_global}</i></Typography>
                 </div>
                 <Typography variant={'h4'}>
-                    L'objectif est de mieux comprendre les processus <b>décisionnels financiers d'investissement</b>.
+                    Nous souhaitons mieux comprendre les processus de <b>la prise de décisions financières et d'investissement</b>.
                     Pour cette étude, des informations concernant différents fonds d'investissement vous seront présentées.
                     Ensuite, vous devrez répondre à plusieurs questions sur ces sujets. Vos réponses resteront totalement confidentielles.  La durée de l'étude est d'environ <b>15 minutes</b>.
                 </Typography>

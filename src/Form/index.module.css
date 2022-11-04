@@ -7,10 +7,38 @@
     margin-bottom: 20px;
 }
 
-.form > form {
+.wrapperRadio {
+    display: flex;
+    position: relative;
+    margin-top: 25px;
+}
+
+.radio {
     display: flex;
     flex-flow: column;
+    align-items: center;
+    z-index: 10;
 }
+
+.radio > p {
+    font-size: 12px;
+    margin: 0;
+    text-align: center;
+    max-width: 200px;
+}
+
+.sliderBar {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: #2F2F2F;
+    left: 0px;
+    top: 27%;
+    transform: translateY(-50%);
+    z-index: 5;
+}
+
+
 
 /*  */
 
@@ -25,11 +53,22 @@
 .scale {
     display: flex;
     flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+}
+
+.regle {
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
 
 .wrapper {
     display: flex;
     flex-flow: column;
+    margin: 25px 0px;
 }
 
 .wrapper .divider {
@@ -37,6 +76,7 @@
 }
 
 .divider {
+    margin-top: 20px;
     height: 1px;
     width: 90%;
     background: #cacaca;

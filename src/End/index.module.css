@@ -7,8 +7,18 @@
     justify-content: space-around;
 }
 
-.container {
+.button {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
 
+.download {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
 }
 
 

@@ -15,6 +15,7 @@ const StyledTypography = styled.p`
       }
       &.h3 {
         font-size: 25px;
+        line-height: 35px;
       }
       &.h4 {
         font-size: 20px;

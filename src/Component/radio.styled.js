@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+`
 
 const Span = styled.span`
     display: flex;
 	align-items: center;
-	padding: 0.375em 0.75em 0.375em 0.375em;
+	padding: 0.375em 0.375em 0.375em 0.375em;
 	border-radius: 99em; // or something higher...
 	transition: 0.25s ease;
-    font-size: 12px;
+    font-size: 14px;
 	&:hover {
 		background-color: mix(#fff, ${({ theme }) => theme.colors.primary.main}, 84%);
 	}
@@ -43,13 +44,14 @@ const Label = styled.label`
     font-weight: 500;
     position: relative;
     overflow: hidden;
-    margin-bottom: 0.375em;
+    margin: 0;
 `
 
 export const RadioButton = ({
     value,
     label,
-    onChange
+    onChange,
+    ...props
 }) => {
     return (
         <Wrapper>
@@ -58,7 +60,7 @@ export const RadioButton = ({
                     type="radio"
                     name="radio"
                     value={value}
-                    onChange={onChange} />
+                    onChange={onChange} {... props}/>
                 <Span>{label}</Span>
             </Label>
         </Wrapper>

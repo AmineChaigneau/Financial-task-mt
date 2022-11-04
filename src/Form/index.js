@@ -12,13 +12,32 @@ const ScaleItem = ({ label, value, onChange }) => {
     return (
         <div className={style.form}>
             <Typography variant={'h4'}>{label}</Typography>
-            <form name={label} value={value} onChange={onChange}>
-                <RadioButton value={'1'} label={"pas du tout significatif/vaut la peine d'être considéré"} />
-                <RadioButton value={'2'} label={"peu significatif/méritant d'être considéré"} />
-                <RadioButton value={'3'} label={"légèrement significatif/méritant d'être considéré"} />
-                <RadioButton value={'4'} label={"plutôt significatif/vaut la peine d'être considéré"} />
-                <RadioButton value={'5'} label={"significatif/vaut la peine d'être considéré"} />
-                <RadioButton value={'6'} label={"très significatif/à considérer"} />
+            <form className={style.wrapperRadio} name={label} value={value} onChange={onChange}>
+                <div className={style.radio}>
+                    <RadioButton value={'1'} label={""} />
+                    <p>pas du tout significatif/vaut la peine d'être considéré</p>
+                </div>
+                <div className={style.radio}>
+                    <RadioButton value={'2'} label={""} />
+                    <p>peu significatif/méritant d'être considéré</p>
+                </div>
+                <div className={style.radio}>
+                    <RadioButton value={'3'} label={""} />
+                    <p>légèrement significatif/méritant d'être considéré</p>
+                </div>
+                <div className={style.radio}>
+                    <RadioButton value={'4'} label={""} />
+                    <p>plutôt significatif/vaut la peine d'être considéré</p>
+                </div>
+                <div className={style.radio}>
+                    <RadioButton value={'5'} label={""} />
+                    <p>significatif/vaut la peine d'être considéré</p>
+                </div>
+                <div className={style.radio}>
+                    <RadioButton value={'6'} label={""} />
+                    <p>très significatif/à considérer</p>
+                </div>
+                <div className={style.sliderBar}></div>
             </form>
         </div>
     )
@@ -55,7 +74,7 @@ const Form = ({ update_form, subject_id }) => {
     const updateSelection = index => e => {
         let newArr = [...options];
         newArr[index] = { ...newArr[index], value: e.target.value }
-        
+
         setOptions(newArr);
 
         setCompleted(newArr.every(isCompleted))
@@ -63,18 +82,19 @@ const Form = ({ update_form, subject_id }) => {
 
     const handleRedirect = () => {
         update_form({ subject_id: subject_id, form: options, time: 0 })
-        navigate('/transition')
+        navigate('/End')
     }
 
     return (
         <div className={style.root}>
             <div className={style.regle}>
-                <Typography>Avant de débuter l'exeprimentation, vous devez remplir un rapide petit questionnaire.</Typography>
+                <Typography variant={'h4'}>Avant de débuter l'exeprimentation, vous devez remplir un rapide petit questionnaire.</Typography>
+                <Typography>Veuillez évaluer <b>le niveau de signification des phrases suivantes</b> concernant les finances à l'aide d'une échelle de six points donnée.</Typography>
             </div>
             <div className={style.scale}>
                 {options.map((option, index) =>
                     <div className={style.wrapper} key={index}>
-                        <ScaleItem label={option.label} value={option.value} onChange={updateSelection(index)}/>
+                        <ScaleItem label={option.label} value={option.value} onChange={updateSelection(index)} />
                         <Divider />
                     </div>
                 )}

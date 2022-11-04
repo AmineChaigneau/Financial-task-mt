@@ -47,7 +47,7 @@ const FullScreen = ({ children, update_screen }) => {
 
     return (
         <div ref={maximizeElement}
-            style={{ background: '#fff' }}
+           style={{ background: '#fff' }}
         >
             {errorMessage ? (
                 <div>
