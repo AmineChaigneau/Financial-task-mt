@@ -89,7 +89,6 @@ const Form = ({ update_form, subject_id }) => {
     return (
         <div className={style.root}>
             <div className={style.regle}>
-                <Typography variant={'h4'}>Avant de débuter l'exeprimentation, vous devez remplir un rapide petit questionnaire.</Typography>
                 <Typography>Veuillez évaluer <b>le niveau de signification des phrases suivantes</b> concernant les finances à l'aide d'une échelle de six points donnée.</Typography>
             </div>
             <div className={style.scale}>

@@ -5,7 +5,7 @@ import rules from '../Component/ressources/Eco_rules.png'
 import mtrules from '../Component/ressources/Mt_rules.png'
 import style from './index.module.css'
 import { useState } from 'react'
-import image from '../Component/ressources/img_test.jpg'
+import image from '../Component/ressources/img_test.jpeg'
 
 const Consigne = () => {
 
@@ -42,10 +42,10 @@ const Consigne = () => {
                                 <Typography variant={'h4'}>
                                     Le temps disponible pour consulter chaque document financier sera <b>limité</b>.
                                     Chaque document présente une structure similaire, veuillez par ailleurs considérer chaque document séparément.
-                                    Nous vous rappelons qu’il <b>n'y a pas de bonnes et de mauvaises réponses</b>, nous ne nous intéressons qu'à vos propres préférences.
+                                    Nous vous rappelons qu’il <b>n'y a pas de bonnes ou de mauvaises réponses</b>, nous ne nous intéressons qu'à vos propres préférences.
                                 </Typography>
                                 <Typography variant={'h4'}>
-                                    Avant de débuter, un exemple de document financier va vous être présenté, sans limites de temps. Cliquez simplement sur commencer pour débuter l'expérimentation.
+                                    Avant de débuter, un exemple de document financier va vous être présenté, sans limite de temps. Cliquez simplement sur continuer pour débuter l'expérimentation.
                                 </Typography>
                             </div>
                             <div className={style.button}>

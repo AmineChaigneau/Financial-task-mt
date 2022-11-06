@@ -78,9 +78,9 @@ const Stimuli = ({ trial_global, update_trials, update_current, nb_trial }) => {
             ) : (
                 <div className={style.stimuli}>
                     <img alt='' src={trial.img} />
-                    <div className={style.trialId}>
+                    {/* <div className={style.trialId}>
                         {trial.id_trial}
-                    </div>
+                    </div> */}
                 </div>
             )}
         </div>

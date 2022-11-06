@@ -34,6 +34,9 @@ const Home = ({ resetStore, subject_id_global }) => {
                     Votre participation à l'étude est volontaire. En continuant, vous confirmez avoir a minima 18 ans. Vous pouvez choisir de mettre fin à votre participation à tout moment.
                     Vous pouvez contacter les chercheurs responsables de l'étude à l'adresse e-mail suivante : <i><u>milos.borozan@univ-rouen.fr</u></i>.
                 </Typography>
+                <Typography variant={'h4'}>
+                    <i>Aucune donnée individuelle ne sera traitée, seuls des résultats combinés avec d’autres participants à ce test seront analysés. </i>
+                </Typography>
             </div>
             <div className={style.button}>
                 <Button onClick={handleClick} disabled={false}>

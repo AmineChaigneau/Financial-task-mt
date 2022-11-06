@@ -49,8 +49,8 @@ const Trois = ({ value, onChange }) => {
             </div>
             <RangeSlider name={''} max={10} value={value} onChange={onChange} />
             <div className={style.label}>
-                <p>Pas du tout</p>
-                <p>Complément</p>
+                <p>Très faible</p>
+                <p>Très important</p>
             </div>
         </>
     )
@@ -113,8 +113,8 @@ const Sept = ({ value, onChange }) => {
                 <Typography variant={'h4'}>Si les taux d'intérêt augmentent, qu'arrivera-t-il généralement aux prix des obligations ?</Typography>
             </div>
             <form className={style.form} value={value} onChange={onChange}>
-                <RadioButton value={'1'} label={"Ils se lèveront"} />
-                <RadioButton value={'2'} label={"Ils tomberont"} />
+                <RadioButton value={'1'} label={"Ils augmenteront"} />
+                <RadioButton value={'2'} label={"Ils diminueront"} />
                 <RadioButton value={'3'} label={"Ils resteront les mêmes"} />
                 <RadioButton value={'4'} label={"Il n'y a pas de relation entre le prix des obligations et le taux d'intérêt"} />
                 <RadioButton value={'5'} label={"Je ne sais pas"} />
@@ -131,7 +131,7 @@ const Huit = ({ value, onChange }) => {
                 <Typography variant={'h4'}>Un prêt hypothécaire de 15 ans nécessite généralement des versements mensuels plus élevés qu'un prêt hypothécaire de 30 ans, mais le total des intérêts payés sur la durée du prêt sera inférieur.</Typography>
             </div>
             <form className={style.form} value={value} onChange={onChange}>
-                <RadioButton value={'1'} label={"Vraie"} />
+                <RadioButton value={'1'} label={"Vrai"} />
                 <RadioButton value={'2'} label={"Faux"} />
                 <RadioButton value={'3'} label={"Je ne sais pas"} />
                 <RadioButton value={'4'} label={"Je préfère ne rien dire"} />
