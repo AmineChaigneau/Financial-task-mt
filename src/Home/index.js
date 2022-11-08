@@ -25,6 +25,7 @@ const Home = ({ resetStore, subject_id_global }) => {
                     <Typography variant={'h1'}>Bienvenue</Typography>
                     <Typography variant={'h3'}><i>{subject_id_global}</i></Typography>
                 </div>
+                {/* <div dangerouslySetInnerHTML={{__html: corps.main }}></div> */}
                 <Typography variant={'h4'}>
                     Nous souhaitons mieux comprendre les processus de <b>la prise de décisions financières et d'investissement</b>.
                     Pour cette étude, des informations concernant différents fonds d'investissement vous seront présentées.
