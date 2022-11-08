@@ -3,9 +3,6 @@ import { Button, MTbutton } from '../Component/button.styled'
 import { Typography } from '../Component/styles/typography.styled'
 import style from './index.module.css'
 import { useMousePosition, getRandomArbitrary } from '../hook'
-import { connect } from 'react-redux'
-import { update_tracking } from '../Redux/Actions/current'
-import { useNavigate } from 'react-router-dom'
 
 const Tracker = ({ stateChanger, ...rest }) => {
 
@@ -23,13 +20,14 @@ const Tracker = ({ stateChanger, ...rest }) => {
     )
 }
 
-const Choice = ({ update_tracking, trial_id_global }) => {
-
-    const navigate = useNavigate();
+const Test = () => {
 
     const isInitialMount = useRef(true);
 
-    const [disabled, setDisabled] = useState(true);
+    const [disabled, setDisabled] = useState({
+        square: true,
+        option: true
+    });
 
     const [tracking, setTracking] = useState(false);
 
@@ -39,27 +37,53 @@ const Choice = ({ update_tracking, trial_id_global }) => {
 
     const [reactionTime, setReactionTime] = useState(0);
 
+    const [mousePos, setMousePos] = useState({});
+
+    const [starting, setStarting] = useState();
+
+    useEffect(() => {
+        const handleMouseMove = (event) => {
+            setMousePos({ x: event.clientX, y: event.clientY });
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            window.removeEventListener(
+                'mousemove',
+                handleMouseMove
+            );
+        };
+    }, []);
+
+    useEffect(() => {
+        if (disabled.option) {
+            tracking && mousePos.y <= starting - 50 && setDisabled({ ...disabled, option: false })
+        }
+    }, [mousePos, setDisabled, tracking]);
+
     const handleClick = () => {
-        setDisabled(false)
+        setDisabled({ ...disabled, square: false })
         setTracking(true)
+        setStarting(mousePos.y)
     }
 
     const handleClickLeft = () => {
-        const d1 = new Date();
-        const end = d1.getTime();
-
+        console.log(tracker)
         setTracking(false)
-        update_tracking({ time: end-reactionTime, tracking: tracker, choice: 'non', output: false, invert: invert })
-        navigate('/temp')
+        setDisabled({
+            square: true,
+            option: true
+        })
     }
 
     const handleClickRight = () => {
-        const d1 = new Date();
-        const end = d1.getTime();
-
+        console.log(tracker)
         setTracking(false)
-        update_tracking({ time: end-reactionTime, tracking: tracker, choice: 'oui', output: true, invert: invert })
-        navigate('/temp')
+        setDisabled({
+            square: true,
+            option: true
+        })
     }
 
     useEffect(() => {
@@ -78,17 +102,17 @@ const Choice = ({ update_tracking, trial_id_global }) => {
 
     return (
         <div className={style.root}>
-            <div className={style.choice} style={{ flexDirection: invert ? 'row-reverse' : ''}}>
-                <MTbutton disabled={disabled} bg={false} onClick={handleClickLeft}>
+            <div className={style.choice} style={{ flexDirection: invert ? 'row-reverse' : '', opacity: disabled.square ? 0 : 1 }}>
+                <MTbutton disabled={disabled.option} bg={false} onClick={handleClickLeft}>
                     Non
                 </MTbutton>
-                <MTbutton disabled={disabled} bg={true} onClick={handleClickRight}>
+                <MTbutton disabled={disabled.option} bg={true} onClick={handleClickRight}>
                     Oui
                 </MTbutton>
             </div>
             <div className={style.question}>
                 <Typography>
-                    D'après les informations affichées, investiriez-vous votre argent dans ce fonds d'investissement ?
+                    (Test) D'après les informations affichées, investiriez-vous votre argent dans ce fonds d'investissement ?  ({mousePos.x}, {mousePos.y})
                 </Typography>
                 <Typography>
                     <i>Vous devez répondre le plus rapidement et précisément possible.</i>
@@ -104,8 +128,4 @@ const Choice = ({ update_tracking, trial_id_global }) => {
     )
 }
 
-const mapStateToProps = state => ({
-    trial_id_global: state.currentReducer.id_trial,
-})
-
-export default connect(mapStateToProps, { update_tracking })(Choice)
+export default Test

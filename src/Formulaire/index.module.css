@@ -4,7 +4,7 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .header {
@@ -20,7 +20,7 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .content {
@@ -41,7 +41,7 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     margin-top: 10px;
 }
 

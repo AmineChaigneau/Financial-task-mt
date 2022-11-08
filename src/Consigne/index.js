@@ -37,7 +37,7 @@ const Consigne = () => {
                                 </Typography>
                                 <Typography variant={'h4'}>
                                     Par conséquent, nous vous demanderons <b>d'examiner attentivement certains documents financiers</b> (<i>image 1</i>).
-                                    Ensuite nous vous poserons quelques <b>questions</b> à ce sujet et une interface de choix vous sera présentée (<i>image 2</i>).
+                                    Ensuite nous vous poserons quelques <b>questions</b> à ce sujet et une interface de choix vous sera présentée (<i>image 2</i>). Vous devrez répondre le plus <b>rapidement</b> et <b>précisément</b> possible.
                                 </Typography>
                                 <Typography variant={'h4'}>
                                     Le temps disponible pour consulter chaque document financier sera <b>limité</b>.

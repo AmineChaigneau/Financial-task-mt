@@ -18,6 +18,7 @@ import Temp from './Temp'
 import Question from './Question'
 import Scale from './Scale'
 import End from './End'
+import Test from './Test'
 import FullScreen from "./utils/fullScreen";
 
 const theme = {
@@ -52,6 +53,7 @@ function App() {
             <Route path="/question" element={ <Question />} />
             <Route path="/scale" element={ <Scale />} />
             <Route path="/end" element={ <End />} />
+            <Route path="/test" element={ <Test />} />
           </Routes>
         </FullScreen>
       </ThemeProvider>
