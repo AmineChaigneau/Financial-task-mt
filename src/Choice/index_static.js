@@ -29,14 +29,7 @@ const Choice = ({ update_tracking, trial_id_global }) => {
 
     const isInitialMount = useRef(true);
 
-    const [disabled, setDisabled] = useState({
-        square: true,
-        option: true
-    });
-
-    const [mousePos, setMousePos] = useState({});
-
-    const [starting, setStarting] = useState();
+    const [disabled, setDisabled] = useState(true);
 
     const [tracking, setTracking] = useState(false);
 
@@ -46,31 +39,9 @@ const Choice = ({ update_tracking, trial_id_global }) => {
 
     const [reactionTime, setReactionTime] = useState(0);
 
-    useEffect(() => {
-        const handleMouseMove = (event) => {
-            setMousePos({ x: event.clientX, y: event.clientY });
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-            window.removeEventListener(
-                'mousemove',
-                handleMouseMove
-            );
-        };
-    }, []);
-
-    useEffect(() => {
-        if (disabled.option) {
-            tracking && mousePos.y <= starting - 50 && setDisabled({ ...disabled, option: false })
-        }
-    }, [mousePos, setDisabled, tracking]);
-
     const handleClick = () => {
-        setDisabled({ ...disabled, square: false })
+        setDisabled(false)
         setTracking(true)
-        setStarting(mousePos.y)
     }
 
     const handleClickLeft = () => {
@@ -107,11 +78,11 @@ const Choice = ({ update_tracking, trial_id_global }) => {
 
     return (
         <div className={style.root}>
-            <div className={style.choice} style={{ flexDirection: invert ? 'row-reverse' : '', opacity: disabled.square ? 0 : 1}}>
-                <MTbutton disabled={disabled.option} bg={false} onClick={handleClickLeft}>
+            <div className={style.choice} style={{ flexDirection: invert ? 'row-reverse' : ''}}>
+                <MTbutton disabled={disabled} bg={false} onClick={handleClickLeft}>
                     Non
                 </MTbutton>
-                <MTbutton disabled={disabled.option} bg={true} onClick={handleClickRight}>
+                <MTbutton disabled={disabled} bg={true} onClick={handleClickRight}>
                     Oui
                 </MTbutton>
             </div>
