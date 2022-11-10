@@ -19,6 +19,7 @@ import Question from './Question'
 import Scale from './Scale'
 import End from './End'
 import Test from './Test'
+import Langue from './Langue'
 import FullScreen from "./utils/fullScreen";
 
 const theme = {
@@ -39,7 +40,8 @@ function App() {
       <ThemeProvider theme={theme}>
         <FullScreen>
           <Routes>
-            <Route path="/" element={ <Home />} />
+            <Route path="/" element={ <Langue />} />
+            <Route path="/home" element={ <Home />} />
             <Route path="/form" element={ <Form />} />
             <Route path="/formulaire" element={ <Formulaire />} />
             <Route path="/consigne" element={ <Consigne />} />

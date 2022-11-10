@@ -1,4 +1,4 @@
-import { UPDATE_FORM, UPDATE_BULSHIT, UPDATE_RISK, UPDATE_TRIAL_FORM, UPDATE_FORM_FAIL, UPDATE_SCALE } from '../Actions/types'
+import { UPDATE_FORM, UPDATE_BULSHIT, UPDATE_RISK, UPDATE_TRIAL_FORM, UPDATE_FORM_FAIL, UPDATE_SCALE, UPDATE_TRIAL_FORMLIST } from '../Actions/types'
 
 const initialState =  {
     subject_id: 0,
@@ -44,6 +44,11 @@ export default function formReducer(state = initialState, action) {
                 ...state,
                 subject_id: payload.subject_id,
                 question_scale: payload.form
+            }
+        case UPDATE_TRIAL_FORMLIST:
+            return {
+                ...state,
+                trial_scale: [...state.trial_scale, ...payload]
             }
         case UPDATE_FORM_FAIL:
             return {

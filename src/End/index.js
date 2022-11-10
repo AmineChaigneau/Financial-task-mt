@@ -76,7 +76,7 @@ const Confeti = ({ children }) => {
     )
 }
 
-const End = ({ export_trial, bulshit_data, export_calibration, trial_scale_data, risk_game_data, risk_value, formulaire_data, questionnaire_data }) => {
+const End = ({ export_trial, bulshit_data, export_calibration, trial_scale_data, risk_game_data, risk_value, formulaire_data, questionnaire_data, text }) => {
 
     const subject_id = String(export_trial.subject_id);
 
@@ -108,7 +108,7 @@ const End = ({ export_trial, bulshit_data, export_calibration, trial_scale_data,
             return newArr
         })
 
-        const headers = ['id_trial; stimuli; time; tracking; choice; output; invert; height; width; bulshit_q1; bulshit_q2; bulshit_q3; bulshit_q4; bulshit_q5; bulshit_q6; bulshit_q7; bulshit_q8; bulshit_q9; bulshit_q10; bulshit_q11; bulshit_q12; subject_id; trial_q1; trial_q2; trial_q3; trial_q4; ques_l1; ques_l2; ques_l3; ques_q1; ques_q2; ques_q3; ques_q4; ques_q5; ques_r1; ques_r2; ques_r3; ques_r4; perf1; perf2; risk_q; age; genre; profession; main; souris']
+        const headers = ['id_trial; stimuli; time; tracking; choice; output; invert; height; width; bulshit_q1; bulshit_q2; bulshit_q3; bulshit_q4; bulshit_q5; bulshit_q6; bulshit_q7; bulshit_q8; bulshit_q9; bulshit_q10; bulshit_q11; bulshit_q12; subject_id; trial_q1; trial_q2; trial_q3; trial_q4; trial_q5; trial_q6; trial_q7; ques_l1; ques_l2; ques_l3; ques_q1; ques_q2; ques_q3; ques_q4; ques_q5; ques_r1; ques_r2; ques_r3; ques_r4; perf1; perf2; risk_q; age; genre; profession; main; souris']
 
         const Export = csvExport.map(function(row) {
             return row.join(';')
@@ -150,7 +150,7 @@ const End = ({ export_trial, bulshit_data, export_calibration, trial_scale_data,
             <div className={style.container}>
                 <Confeti>
                     <Typography variant='h1'>
-                        Merci de votre participation.
+                        {text.end}
                     </Typography>
                 </Confeti>
             </div>
@@ -175,6 +175,7 @@ const mapStateToProps = state => ({
     risk_value: state.formReducer.risk_scale,
     formulaire_data: state.formReducer.formulaire,
     questionnaire_data: state.formReducer.question_scale,
+    text: state.textReducer.text,
 })
 
 export default connect(mapStateToProps)(End)

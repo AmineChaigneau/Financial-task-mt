@@ -8,7 +8,7 @@ import style from './index.module.css'
 import { update_formulaire } from '../Redux/Actions/form'
 import { connect } from 'react-redux'
 
-const Formulaire = ({ subject_id, update_formulaire }) => {
+const Formulaire = ({ subject_id, update_formulaire, text }) => {
 
     const navigate = useNavigate()
 
@@ -41,15 +41,15 @@ const Formulaire = ({ subject_id, update_formulaire }) => {
     return (
         <div className={style.root}>
             <div className={style.header}>
-                <Typography variant={'h4'}>Informations nécessaires</Typography>
+                <Typography variant={'h4'}>{text.form_title}</Typography>
             </div>
             <div className={style.consigne}>
-                <Typography>Veuillez compléter le formulaire ci dessous. Les informations resterons anonymes et confidentielles.</Typography>
+                <Typography>{text.form_corps1}</Typography>
             </div>
             <form onSubmit={e => onSubmit(e)} className={style.form}>
                 <div className={style.content}>
                     <Select id='age' name='age' onChange={handleChange}>
-                        <option value={''}>Âge *</option>
+                        <option value={''}>{text.form_age} *</option>
                         <option value={20}>15-20</option>
                         <option value={25}>21-25</option>
                         <option value={30}>26-30</option>
@@ -66,33 +66,32 @@ const Formulaire = ({ subject_id, update_formulaire }) => {
                 </div>
                 <div className={style.content}>
                     <Select id='genre' name='genre' onChange={handleChange}>
-                        <option value={''}>Genre *</option>
-                        <option value={'M'}>Homme</option>
-                        <option value={'F'}>Femme</option>
-                        <option value={'S'}>Autre</option>
+                        <option value={''}>{text.form_genre[0]} *</option>
+                        <option value={'M'}>{text.form_genre[1]}</option>
+                        <option value={'F'}>{text.form_genre[2]}</option>
+                        <option value={'S'}>{text.form_genre[3]}</option>
                     </Select>
                 </div>
                 <div className={style.content}>
-                    <p className={style.label}>Quelle est votre profession ?</p>
+                    <p className={style.label}>{text.form_prof}</p>
                     <TextArea id='profession' name='profession' onChange={handleChange}></TextArea>
                 </div>
                 <div className={style.content}>
                     <Select label="Quelle est votre main dominante ?" id='main' name='main' onChange={handleChange}>
-                        <option value={''}>Main dominante *</option>
-                        <option value={'d'}>Droite</option>
-                        <option value={'g'}>Gauche</option>
+                        <option value={''}>{text.form_main[0]} *</option>
+                        <option value={'d'}>{text.form_main[1]}</option>
+                        <option value={'g'}>{text.form_main[2]}</option>
                     </Select>
                 </div>
                 <div className={style.content}>
                     <Select label="Quelle est votre main sur la souris ?" id='souris' name='souris' onChange={handleChange}>
-                        <option value={''}>Main sur la souris *</option>
-                        <option value={'d'}>Droite</option>
-                        <option value={'g'}>Gauche</option>
+                        <option value={''}>{text.form_souris[0]} *</option>
+                        <option value={'d'}>{text.form_souris[1]}</option>
+                        <option value={'g'}>{text.form_souris[2]}</option>
                     </Select>
                 </div>
                 <div className={style.button}>
-                    <Typography>En poursuivant, je donne mon consentement à l'utilisation des données me concernant sous forme anonyme et agrégée, à des fins de recherche scientifique.</Typography>
-                    <Typography>J'accepte volontairement de participer à l'étude et je comprends que je peux me retirer de l'étude à tout moment, sans donner d'explications.</Typography>
+                    <Typography dangerouslySetInnerHTML={{__html: text.form_accept }} />
                     <Button type='submit'
                         disabled={
                             !formData.age.trim().length
@@ -101,7 +100,7 @@ const Formulaire = ({ subject_id, update_formulaire }) => {
                             || !formData.souris.trim().length
                         }
                     >
-                        Valider
+                        {text.button2}
                     </Button>
                 </div>
             </form>
@@ -111,7 +110,8 @@ const Formulaire = ({ subject_id, update_formulaire }) => {
 
 
 const mapStateToProps = state => ({
-    subject_id: state.exportReducer.subject_id
+    subject_id: state.exportReducer.subject_id,
+    text: state.textReducer.text,
 })
 
 

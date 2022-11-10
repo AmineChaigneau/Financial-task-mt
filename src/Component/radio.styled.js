@@ -5,7 +5,9 @@ const Wrapper = styled.div`
 
 const Span = styled.span`
     display: flex;
-	align-items: center;
+    flex-flow: ${((props) => props.row ? 'column' : 'row')};
+    align-items: center;
+    justify-content: center;
 	padding: 0.375em 0.375em 0.375em 0.375em;
 	border-radius: 99em; // or something higher...
 	transition: 0.25s ease;
@@ -21,7 +23,7 @@ const Span = styled.span`
 			width: 1.5em;
 			height: 1.5em;
 			border-radius: 50%;
-			margin-right: 0.375em;
+			margin-right: ${((props) => props.row ? '0' : '0.375em')};
 			transition: 0.25s ease;
 			box-shadow: inset 0 0 0 0.125em #2F2F2F;
 		}
@@ -51,6 +53,7 @@ export const RadioButton = ({
     value,
     label,
     onChange,
+    row,
     ...props
 }) => {
     return (
@@ -60,8 +63,8 @@ export const RadioButton = ({
                     type="radio"
                     name="radio"
                     value={value}
-                    onChange={onChange} {... props}/>
-                <Span>{label}</Span>
+                    onChange={onChange} {...props} />
+                <Span row={row}>{label}</Span>
             </Label>
         </Wrapper>
     )

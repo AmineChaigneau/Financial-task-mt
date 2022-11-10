@@ -39,6 +39,14 @@
     max-width: 100px;
 }
 
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .button {
     width: 90%;
     display: flex;

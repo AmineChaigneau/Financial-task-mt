@@ -153,7 +153,7 @@ const SliderBar = styled.div`
     width: 100%;
     background: #2F2F2F;
     left: 0px;
-    top: 50%;
+    top: 32%;
     transform: translateY(-50%);
     z-index: 5;
 `
@@ -163,6 +163,7 @@ export const RangeSlider = ({
   onChange,
   value,
   name,
+  row,
   ...props
 }) => {
 
@@ -181,7 +182,7 @@ export const RangeSlider = ({
       {arr.map((item, key) => {
         return (
           <div key={key} style={{ zIndex: 10 }}>
-            <RadioButton value={item} />
+            <RadioButton value={item} label={key} row={true}/>
           </div>
         )
       })}

@@ -6,8 +6,9 @@ import style from './index.module.css'
 import { ReactComponent as Fixed } from '../Component/ressources/fixed.svg'
 import image from '../Component/ressources/charlie.png'
 import rules from '../Component/ressources/Training_rules.png'
+import { connect } from 'react-redux'
 
-const Calibration = () => {
+const Calibration = ({ text }) => {
 
     const navigate = useNavigate()
 
@@ -52,14 +53,11 @@ const Calibration = () => {
                     <div className={style.image}>
                         <img alt='' src={rules} />
                     </div>
-                    <Typography variant={'h4'}>
-                        Au cours de cette expérience, nous utiliserons les technologies de suivi oculaire et de suivi de la souris.
-                        Avant de commencer, pour vous familiariser avec la manière dont l'étude est menée, nous ferons <b>quelques tentatives de test</b>.
-                        Cette phase permettera également l'étalonnage des instruments.
-                    </Typography>
+                    <Typography variant={'h4'} dangerouslySetInnerHTML={{__html: text.calib_corps1 }} />
+                    <Typography variant={'h4'} dangerouslySetInnerHTML={{__html: text.calib_corps2 }} />
                     <div className={style.button}>
                         <Button onClick={handleClick}>
-                            Commencer
+                            {text.button1}
                         </Button>
                     </div>
                 </div>
@@ -77,7 +75,7 @@ const Calibration = () => {
                                 <img alt='' src={image} />
                             </div>
                             <Button onClick={handleRedirect}>
-                                Continuer
+                                {text.button}
                             </Button>
                         </div>
                     )}
@@ -94,4 +92,9 @@ const Calibration = () => {
     )
 }
 
-export default Calibration
+const mapStateToProps = state => ({
+    text: state.textReducer.text,
+})
+
+
+export default connect(mapStateToProps)(Calibration)

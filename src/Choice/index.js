@@ -23,7 +23,7 @@ const Tracker = ({ stateChanger, ...rest }) => {
     )
 }
 
-const Choice = ({ update_tracking, trial_id_global }) => {
+const Choice = ({ update_tracking, text }) => {
 
     const navigate = useNavigate();
 
@@ -78,7 +78,7 @@ const Choice = ({ update_tracking, trial_id_global }) => {
         const end = d1.getTime();
 
         setTracking(false)
-        update_tracking({ time: end-reactionTime, tracking: tracker, choice: 'non', output: false, invert: invert })
+        update_tracking({ time: end - reactionTime, tracking: tracker, choice: 'non', output: false, invert: invert })
         navigate('/temp')
     }
 
@@ -87,7 +87,7 @@ const Choice = ({ update_tracking, trial_id_global }) => {
         const end = d1.getTime();
 
         setTracking(false)
-        update_tracking({ time: end-reactionTime, tracking: tracker, choice: 'oui', output: true, invert: invert })
+        update_tracking({ time: end - reactionTime, tracking: tracker, choice: 'oui', output: true, invert: invert })
         navigate('/temp')
     }
 
@@ -107,20 +107,20 @@ const Choice = ({ update_tracking, trial_id_global }) => {
 
     return (
         <div className={style.root}>
-            <div className={style.choice} style={{ flexDirection: invert ? 'row-reverse' : '', opacity: disabled.square ? 0 : 1}}>
+            <div className={style.choice} style={{ flexDirection: invert ? 'row-reverse' : '', opacity: disabled.square ? 0 : 1 }}>
                 <MTbutton disabled={disabled.option} bg={false} onClick={handleClickLeft}>
-                    Non
+                    {text.choice_lab[0]}
                 </MTbutton>
                 <MTbutton disabled={disabled.option} bg={true} onClick={handleClickRight}>
-                    Oui
+                    {text.choice_lab[1]}
                 </MTbutton>
             </div>
             <div className={style.question}>
                 <Typography>
-                    D'après les informations affichées, investiriez-vous votre argent dans ce fonds d'investissement ?
+                    {text.choice_q1}
                 </Typography>
                 <Typography>
-                    <i>Vous devez répondre le plus rapidement et précisément possible.</i>
+                    <i>{text.choice_q2}</i>
                 </Typography>
             </div>
             <div className={style.start}>
@@ -134,7 +134,7 @@ const Choice = ({ update_tracking, trial_id_global }) => {
 }
 
 const mapStateToProps = state => ({
-    trial_id_global: state.currentReducer.id_trial,
+    text: state.textReducer.text
 })
 
 export default connect(mapStateToProps, { update_tracking })(Choice)

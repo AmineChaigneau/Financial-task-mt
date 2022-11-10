@@ -11,10 +11,13 @@
     width: 90%;
     display: flex;
     flex-flow: column;
+    align-items: center;
 }
 
 .header {
-    margin-bottom: 50px;
+    margin-bottom: 25px;
+    width: 90%;
+    max-width: 900px;
 }
 
 .header > p {
@@ -22,6 +25,7 @@
 }
 
 .label {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;

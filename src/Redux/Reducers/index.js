@@ -4,6 +4,7 @@ import exportReducer from './export'
 import currentReducer from './current'
 import calibrationReducer from './calibration'
 import formReducer from './form'
+import textReducer from './langue'
 import { RESET_STORE } from '../Actions/types'
 
 const appReducer = combineReducers({
@@ -12,6 +13,7 @@ const appReducer = combineReducers({
     currentReducer,
     calibrationReducer,
     formReducer,
+    textReducer
 })
 
 const rootReducer = (state, action) => {

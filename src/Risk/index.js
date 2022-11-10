@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { update_risk_scale } from '../Redux/Actions/form'
 import { connect } from "react-redux";
 
-const Risk = ({ subject_id, update_risk_scale }) => {
+const Risk = ({ subject_id, update_risk_scale, text }) => {
 
     // const [value, setValue] = useState(50);
 
@@ -65,44 +65,42 @@ const Risk = ({ subject_id, update_risk_scale }) => {
                 <>
                     <div className={style.container}>
                         <div className={style.header}>
-                            <Typography variant={'h4'}><b>Dans quelle mesure êtes-vous prêt à prendre des risques, en général ?</b> <i>Avant de répondre, prenez un moment pour réfléchir à votre expérience et aux décisions que vous avez prises dans différents domaines (éducation, relations, santé, achats, investissement, etc.) et différents moments de votre vie.</i></Typography>
+                            <Typography variant={'h4'} dangerouslySetInnerHTML={{__html: text.risk_question }}/>
                         </div>
                         <RangeSlider name={'risk'} max={10} value={slider} onChange={(e) => handleChangeSlide(e)} />
                         {/* <Slider onInput={e => setValue(e.target.value)} value={value} /> */}
                         <div className={style.label}>
-                            <p>Pas du tout envie de prendre des risques</p>
-                            <p>Pleinement prêt à prendre des risques</p>
+                            <p>{text.risk_lab[0]}</p>
+                            <p>{text.risk_lab[1]}</p>
                         </div>
                     </div>
                     <div>
-                        <Button disabled={slider <= 0} onClick={handleClick}>Continuer</Button>
+                        <Button disabled={slider <= 0} onClick={handleClick}>{text.button}</Button>
                     </div>
                 </>
             ) : (
                 <div className={style.containerEssai}>
                     <div className={style.header}>
-                        <Typography variant={'h4'}>
-                            Vous allez participez à <b>un petit jeu rapide</b> avant de poursuivre vers l'expérimentation.
-                            Une fois le jeu terminé, vous devez rentrer manuellement votre performance dans les zones ci dessous.
-                        </Typography>
+                        <Typography variant={'h4'} dangerouslySetInnerHTML={{__html: text.risk_corps1 }}/>
+                        <Typography variant={'h4'} dangerouslySetInnerHTML={{__html: text.risk_corps2 }} />
                     </div>
                     <form className={style.content} onSubmit={e => onSubmit(e)}>
                         <div className={style.area}>
-                            <p className={style.lab}>Essai n°1</p>
+                            <p className={style.lab}>{text.risk_form[0]} n°1</p>
                             <TextArea id='essai1' name='essai1' onChange={handleChange} />
                         </div>
                         <div className={style.area}>
-                            <p className={style.lab}>Essai n°2</p>
+                            <p className={style.lab}>{text.risk_form[0]} n°2</p>
                             <TextArea id='essai2' name='essai2' onChange={handleChange} />
                         </div>
                         <div className={style.err}>
-                            {err ? (<p>Uniquement des nombres</p>) : (<></>)}
+                            {err ? (<p>{text.risk_form[1]}</p>) : (<></>)}
                         </div>
                         <div>
                             <Button type='submit' disabled={
                                 !formData.essai1.trim().length
                                 || !formData.essai2.trim().length
-                            }>Continuer</Button>
+                            }>{text.button}</Button>
                         </div>
                     </form>
                 </div>
@@ -113,6 +111,7 @@ const Risk = ({ subject_id, update_risk_scale }) => {
 
 const mapStateToProps = state => ({
     subject_id: state.exportReducer.subject_id,
+    text: state.textReducer.text,
 })
 
 export default connect(mapStateToProps, { update_risk_scale })(Risk);
