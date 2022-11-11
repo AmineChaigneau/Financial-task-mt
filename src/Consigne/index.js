@@ -6,6 +6,8 @@ import mtrules from '../Component/ressources/Mt_rules.png'
 import style from './index.module.css'
 import { useState } from 'react'
 import image from '../Component/ressources/img_test.jpeg'
+import image_it from '../Component/ressources/img_test_it.jpeg'
+import image_en from '../Component/ressources/img_test_en.jpeg'
 import { connect } from 'react-redux'
 
 const Un = ({ onClick, text }) => {
@@ -54,11 +56,11 @@ const Deux = ({ onClick, text }) => {
     )
 }
 
-const Trois = ({ onClick, text }) => {
+const Trois = ({ onClick, text, langue }) => {
 
     return (
         <div className={style.imgContainer}>
-            <img alt='' src={image} />
+            <img alt='' src={langue === 'en' ? image_en : langue === 'it' ? image_it : image} />
             <div className={style.buttonImg}>
                 <Button onClick={onClick} disabled={false}>
                     {text.button3}
@@ -69,7 +71,7 @@ const Trois = ({ onClick, text }) => {
 }
 
 
-const Consigne = ({ text }) => {
+const Consigne = ({ text, langue }) => {
 
     const navigate = useNavigate();
 
@@ -82,7 +84,7 @@ const Consigne = ({ text }) => {
             case 2:
                 return <Deux onClick={() => setPage(page + 1)} text={text}/>
             case 3:
-                return <Trois onClick={() => navigate('/stimuli')} text={text}/>
+                return <Trois onClick={() => navigate('/stimuli')} text={text} langue={langue}/>
             default:
                 return <div>Err</div>
         }
@@ -100,6 +102,7 @@ const Consigne = ({ text }) => {
 
 const mapStateToProps = state => ({
     text: state.textReducer.text,
+    langue: state.textReducer.langue,
 })
 
 export default connect(mapStateToProps)(Consigne)

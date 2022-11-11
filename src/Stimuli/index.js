@@ -63,7 +63,7 @@ const Stimuli = ({ trial_global, update_trials, update_current, nb_trial }) => {
                 update_trials(index)
                 update_current(item.id_trial)
             }
-        }, 2500)
+        }, 60000)
 
     }, [])
 

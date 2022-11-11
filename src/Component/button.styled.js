@@ -155,7 +155,7 @@ const Icon = styled.button`
   border: none;
   padding: 20px;
   border-radius: 50%;
-  transition: 0.5s ease-in-out;
+  transition: 0.2s ease-in-out;
   cursor: pointer;
 
   > svg {
@@ -169,7 +169,7 @@ const Icon = styled.button`
   }
 
   &:hover {
-    background: #E7E7E799;
+    background: #E7E7E766;
   }
 `
 

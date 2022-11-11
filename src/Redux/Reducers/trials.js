@@ -1,4 +1,4 @@
-import { UPDATE_TRIALS_SUCCESS, UPDATE_TRIALS_FAIL } from '../Actions/types'
+import { UPDATE_TRIALS_SUCCESS, UPDATE_TRIALS_FAIL, UPDATE_TRIAL_FIRST, UPDATE_TRIAL_FIRST_FAIL } from '../Actions/types'
 import { trials } from '../../Component/ressources/stimuli_list'
 
 const initialState = {
@@ -11,6 +11,15 @@ export default function trialsReducer(state = initialState, action) {
     const { type, payload } = action;
 
     switch (type) {
+        case UPDATE_TRIAL_FIRST:
+            return {
+                ...state,
+                trial: payload
+            }
+        case UPDATE_TRIAL_FIRST_FAIL:
+            return {
+                ...state
+            }
         case UPDATE_TRIALS_SUCCESS:
             return {
                 ...state,

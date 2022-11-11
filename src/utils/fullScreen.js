@@ -47,22 +47,22 @@ const FullScreen = ({ children, update_screen }) => {
 
     return (
         <div ref={maximizeElement}
-           style={{ background: '#fff' }}
+            style={{ background: '#fff' }}
         >
             {errorMessage ? (
                 <div>
-                    Le mode plein écran (fullscreen mode) n'est pas supporté par votre navigateur.
+                    Fullscreen mode is not supported by your browser.
                 </div>
             ) : (
                 <>
                     <Dialog open={!isFullscreen}>
                         <div className={style.container}>
-                            <Typography variant={'h4'}>PLEIN ECRAN REQUIS (FULLSCREEN)</Typography>
+                            <Typography variant={'h4'}>FULLSCREEN REQUIRED</Typography>
                             <div className={style.content}>
                                 <Typography>
-                                    En poursuivant votre navigateur exploitera <strong style={{ color: 'red' }}>la totalité de la surface d'affichage de votre écran</strong> (i.e fullscreen mode). Vous ne pourrez pas intéragir avec l'experimentation si le mode "fullscreen" n'est pas activé.
+                                    By continuing your browser will use <strong style={{ color: 'red' }}>the entire display surface of your screen</strong> (i.e. fullscreen mode). You will not be able to interact with the experiment if fullscreen mode is not enabled.
                                 </Typography>
-                                <Button onClick={handleClick}>Passer en mode plein ecran</Button>
+                                <Button onClick={handleClick}>Switch to fullscreen mode</Button>
                             </div>
                         </div>
                     </Dialog>

@@ -1,5 +1,6 @@
 export const fr = {
     button: 'Continuer',
+    next: 'Suivant',
     button1: 'Commencer',
     button2: 'Valider',
     button3: "Commencer l'experimentation",
@@ -99,6 +100,7 @@ export const fr = {
 
 export const it = {
     button: 'Continua',
+    next: 'Avanti',
     button1: 'Inizia',
     button2: 'Accetta e continua',
     button3: "Inizia l'esperimento",
@@ -195,6 +197,7 @@ export const it = {
 
 export const en = {
     button: 'Continue',
+    next: 'Next',
     button1: 'Start',
     button2: 'Accept and continue',
     button3: "Start the experiment",

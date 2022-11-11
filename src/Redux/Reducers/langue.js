@@ -1,9 +1,9 @@
 import { UPDATE_LANGUE, UPDATE_LANGUE_FAIL } from '../Actions/types'
-import { fr, en } from '../../Component/ressources/text'
+import { fr } from '../../Component/ressources/text'
 
 const initialState = {
     langue: 'fr',
-    text: en
+    text: fr
 }
 
 export default function textReducer(state = initialState, action) {

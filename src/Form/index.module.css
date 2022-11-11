@@ -24,7 +24,7 @@
     font-size: 12px;
     margin: 0;
     text-align: center;
-    max-width: 200px;
+    max-width: 190px;
 }
 
 .sliderBar {
@@ -46,6 +46,7 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    justify-content: space-around;
     height: 100vh;
     overflow: auto;
 }
