@@ -104,7 +104,7 @@ const CalibrationMT = ({ update_calibration, subject_id, text }) => {
                     <Typography dangerouslySetInnerHTML={{__html: text.calib_consigne2 }}/>
                 </div>
                 <div className={style.start}>
-                    <Button className='outlined' onClick={handleClick} disabled={!disabled} style={{ opacity: disabled ? 1 : 0 }}>
+                    <Button className='outlined' onClick={handleClick} disabled={!disabled.square} style={{ opacity: disabled.square ? 1 : 0 }}>
                         +
                     </Button>
                     <div className={style.redline}></div>
