@@ -12,6 +12,12 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.slider {
+    width: 100%;
 }
 
 .header {

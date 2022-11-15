@@ -102,6 +102,7 @@ const CalibrationMT = ({ update_calibration, subject_id, text }) => {
                        {text.calib_consigne1[0]} <b style={{ color: 'red' }}>{calibration >= 10 ? `${text.calib_label[1]}` : `${text.calib_label[0]}`}</b> {text.calib_consigne1[1]}.
                     </Typography>
                     <Typography dangerouslySetInnerHTML={{__html: text.calib_consigne2 }}/>
+                    <Typography><strong>{calibration <= 9 ? calibration : (calibration - 10)}</strong>/10</Typography>
                 </div>
                 <div className={style.start}>
                     <Button className='outlined' onClick={handleClick} disabled={!disabled.square} style={{ opacity: disabled.square ? 1 : 0 }}>

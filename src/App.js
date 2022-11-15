@@ -38,7 +38,7 @@ function App() {
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <FullScreen>
+        {/* <FullScreen> */}
           <Routes>
             <Route path="/" element={ <Langue />} />
             <Route path="/home" element={ <Home />} />
@@ -57,7 +57,7 @@ function App() {
             <Route path="/end" element={ <End />} />
             <Route path="/test" element={ <Test />} />
           </Routes>
-        </FullScreen>
+        {/* </FullScreen> */}
       </ThemeProvider>
     </Router>
   );

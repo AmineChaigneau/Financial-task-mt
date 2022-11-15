@@ -105,52 +105,52 @@ export const it = {
     button2: 'Accetta e continua',
     button3: "Inizia l'esperimento",
     home_title: 'Benvenutə',
-    home_corps1: `Ciao ! Noi vorremmo capire meglio i <b>processi decisionali finanziari</b>.
-    Tu ci puoi aiutare a farlo - in questo studio ti mostreremo informazioni finanziarie relative a diversi fondi di investimento. In seguito, ti chiederemo di rispondere ad alcune domande. Le tue risposte rimarranno completamente confidenziali. Lo studio durerà circa <b>20 minuti</b>.`,
-    home_corps2: `La tua partecipazione allo studio è volontaria. Continuando, confermi di avere almeno 18 anni. Puoi scegliere di terminare la tua partecipazione in qualsiasi momento.
-      È possibile contattare il ricercatore responsabile dello studio al seguente indirizzo mail: <i><u>milos.borozan@univ-rouen.fr</u></i>.`,
-    home_corps3: `<i>I dati non verranno analizzati singolarmente, ma solo in forma aggregata, con i dati di tutti i partecipanti.</i>`,
+    home_corps1: `Ciao! Grazie al tuo aiuto, Vorremmo comprendere meglio i <b>processi decisionali finanziari</b>. In questo studio ti mostreremo informazioni finanziarie relative a diversi fondi di investimento. In seguito, ti chiederemo di rispondere ad alcune domande. Le tue risposte rimarranno completamente confidenziali. Lo studio durerà circa <b>20 minuti</b>.`,
+    home_corps2: `La tua partecipazione allo studio è volontaria. Continuando, confermi di avere almeno 18 anni e di voler prendere parte allo studio. Se lo desideri, potrai scegliere di terminare la tua partecipazione in qualsiasi momento.
+    Se hai dubbi o domande, puoi  contattare il ricercatore responsabile dello studio al seguente indirizzo mail:
+<i><u>milos.borozan@univ-rouen.fr</u></i>.`,
+    home_corps3: `<i>I dati non verranno analizzati singolarmente, ma solo in forma aggregata, facendo una media di tutte le risposte date dai partecipanti.</i>`,
     contact: `contatto :  <u>milos.borozan@univ-rouen.fr</u>`,
     form_title: 'Informazioni personali',
-    form_corps1: 'Per favore inserisca i tuoi dati nei campi indicati sotto. Tutte le informazioni fornite saranno trattate in forma anonima e confidenziale.', 
+    form_corps1: 'Per favore inserisci i tuoi dati nei campi indicati sotto. Ti ricordiamo che tutte le informazioni fornite saranno trattate in forma anonima e confidenziale.', 
     form_age: 'Età',
     form_genre: ['Genere', 'Maschile', 'Femminile', 'Altro'],
     form_prof: 'Qual è la tua professione?',
     form_main: ['La mano dominante', 'Destra', 'Sinistra'],
     form_souris: ['La mano sul mouse', 'Destra', 'Sinistra'],
     form_accept: `Proseguendo, acconsento all'utilizzo dei miei dati in forma anonima e aggregata, per finalità di ricerca scientifica. <br />Accetto volontariamente di partecipare allo studio, sapendo che posso ritirarmi dallo studio in qualsiasi momento, senza fornire alcuna spiegazione.`,
-    calib_corps1: `Durante questo esperimento, utilizzeremo le tecnologie di eye-tracking e mouse-tracking.
-    Prima di iniziare, per farti familiarizzare con il modo in cui viene condotto lo studio, faremo <b> alcuni tentativi di prova</b>.
+    calib_corps1: `Lo studio prevede l'utilizzo di tecnologie di eye-tracking e mouse-tracking per la raccolta dei dati.
+    Prima di iniziare, per farti familiarizzare con lo studio, faremo <b> alcuni tentativi di prova</b>.
      Questa fase consentirà inoltre di calibrare gli strumenti.`,
     calib_corps2: `Nella pagina successiva apparirà una <b>croce</b>. <b>Ti preghiamo di fissarla per tutto il tempo</b>.`,
     calib_label: ['Sinistra', 'Destra'],
-    calib_consigne1: ['Dopo aver fatto clic sul pulsante di avvio "+", cerca di fare clic sul pulsante nella "parte superiore dello schermo" il più velocemente e accuratamente possibile'],
+    calib_consigne1: ['Dopo aver fatto clic sul pulsante di avvio "+", cerca di fare clic sul pulsante collocato nella "parte superiore', 'dello schermo", il più velocemente e accuratamente possibile'],
     calib_consigne2: `Le alternative di scelta verranno visualizzate una volta superata la linea rossa (<i><b>Attenzione</b> ! la linea non sarà visibile più avanti durante il compito</i>).`,
-    risk_question: `<b>Ti reputi essere una persona che, in generale, è completamente preparata a correre dei rischi oppure i rischi preferisci evitarli?</b>
-<i>(Prima di rispondere, ti chiederemmo di prenderti un momento per riflettere sulla tua esperienza e sulle decisioni che hai preso in diverse aree (istruzione, relazioni, salute, acquisti, investimenti, ecc.) e in momenti diversi della tua vita.)</i>`,
+    risk_question: `<b>Reputi di essere una persona che, in generale, è completamente preparata a correre dei rischi oppure che i rischi preferisce evitarli?</b>
+<i>(Prima di rispondere, ti chiediamo di prenderti un momento per riflettere sulla tua esperienza e sulle decisioni che hai preso in diversi contesti (istruzione, relazioni, salute, acquisti, investimenti, ecc.) e in momenti diversi della tua vita.)</i>`,
     risk_lab: ['Preferisco evitare i rischi', 'Completamente preparatə a correre dei rischi'],
     risk_corps1: `Parteciperai a <b>un piccolo gioco veloce</b> prima di continuare l'esperimento.
      Vai alla <b>finestra sulla tua destra/sinistra e segui le istruzioni di gioco</b>.`,
     risk_corps2: ` Quando avrai finito, torna a questa finestra e <b>inserisci manualmente i risultati del gioco</b> nei campi sottostanti.`, 
     risk_form: ['Tentativo', 'Inserire solo numeri'],
     consigne_un_corps1: `Lo scopo di questa sezione è descrivere bene la struttura dell'esperimento. Ti chiediamo di leggere tutte le istruzioni <b>attentamente</b>.`, 
-    consigne_un_corps2: `Le decisioni di investire oppure no al solito si basano sui dati finanziari delle società oppure dei fondi di investimento che prendiamo in considerazione. Questo tipo di dati è presentato in modo standardizzato nei documenti finanziari (<i>image 1</i>).`,
+    consigne_un_corps2: `Le decisioni di investire oppure non investire solitamente si basano sui dati finanziari delle società oppure dei fondi di investimento che prendiamo in considerazione. Questo tipo di dati è presentato in modo standardizzato nei documenti finanziari (<i>image 1</i>).`,
     consigne_un_corps3: `Ogni documento finanziario ha la stessa struttura e si compone di 4 sezioni: 
-    "<b>Spese</b> ", "<b>•Obiettivi e politica d’investimento</b>", "<b>Profilo di rischio e di rendimento</b>" and "<b>Rendimenti ottenuti nel passato</b> ".`,
-    consigne_deux_corps1: `Pertanto, ti chiederemo di <b>esaminare attentamente alcuni documenti finanziari</b>. In seguito, ti faremo alcune <b>domande</b> a riguardo e ti verrà presentata l'interfaccia di scelta. (<i>image 2</i>). Ti chiederemo di rispondere il più <b>rapidamente</b> e <b>accuratamente</b> possibile.`,
-    consigne_deux_corps2: ` Il tempo a disposizione per consultare ogni documento finanziario sarà <b>limitato</b>. Ti chiediamo di considerare ogni documento separatamente. Inoltre, ti ricordiamo che non ci sono <b>risposte giuste o sbagliate</b>, poiché a noi interessano solo le tue preferenze.`,
+    "<b>Spese</b> ", "<b>Obiettivi e politica d’investimento</b>", "<b>Profilo di rischio e di rendimento</b>" e "<b>Rendimenti ottenuti nel passato</b> ".`,
+    consigne_deux_corps1: `Pertanto, ti chiederemo di <b>esaminare attentamente alcuni documenti finanziari</b>. In seguito, ti faremo alcune <b>domande</b> a riguardo e ti verrà presentata l'interfaccia di scelta. (<i>image 2</i>). Ti chiediamo di rispondere il più <b>rapidamente</b> e <b>accuratamente</b> possibile.`,
+    consigne_deux_corps2: ` Il tempo a disposizione per consultare ogni documento finanziario sarà <b>limitato</b>. Ti chiediamo di considerare ogni documento separatamente. Inoltre, ti ricordiamo che non ci sono <b>risposte giuste o sbagliate</b>, poiché a noi interessano solo le tue sincere preferenze.`,
     consigne_deux_corps3: `Prima di iniziare, per farti familiarizzare con i documenti, ti presentiamo un documento finanziario, che potrai esaminare senza limiti di tempo. Per iniziare, fai clic su continua.`,
     consigne_image1: `<i><u>Image 1</u></i> : Interfaccia di documento finanziario`,
     consigne_image2: `<i><u>Image 2</u></i> : Interfaccia di scelta`,
     choice_lab: ['No', 'Sì'],
     choice_q1: "Sulla base delle informazioni che hai appena visto; investiresti i tuoi soldi in questo fondo?",
-    choice_q2: "Per favore rispondere il più rapidamente e accuratamente possibile.",
+    choice_q2: "Per favore rispondi il più rapidamente e accuratamente possibile.",
     question_un_q: "Valuta il tuo livello di fiducia in questa decisione utilizzando la scala sottostante.",
     question_un_lab: ['Del tutto incerto', 'Del tutto certo'],
     question_deux_q: `Indica <b>lil livello di rischio</b> indicato del fondo di investimento che hai appena visto utilizzando la scala sottostante.`,
     question_trois_q: "Le informazioni presentate sono state sufficienti per prendere una decisione?",
     question_trois_lab: ["Del tutto insufficienti / Avrei bisogno di informazioni aggiuntive per prendere una decisione", 'Del tutto sufficienti'],
-    question_quatre_q: `Quale tipo di informazione è stato il più importante per la tua decisione? Indica l’importanza relativa di ognuno di essi utilizzando la scala sottostante.`,
+    question_quatre_q: `Quale tipo di informazione è stata più importante per la tua decisione? Indica l’importanza relativa di ognuna di esse utilizzando la scala sottostante.`,
     question_quatre_lab: ['Non così importante', 'Molto importante'],
     question_quatre_options: ['Spese', 'Obiettivi e politica d’investimento', "Profilo di rischio e di rendimento", 'Rendimenti ottenuti nel passato'],
     scale_un: "In che misura ti sei fidatə delle tue esperienze e preferenze per prendere la decisione?",
@@ -166,7 +166,7 @@ export const it = {
     scale_six: "Ipotizziamo che il tuo tasso d’interesse sul tuo conto corrente, che non applica spese di gestione, sia pari all’1% annuo e che l’inflazione si attesti al 2% annuo. Dopo un anno, con il denaro sul tuo conto corrente sarai in grado di acquistare:",
     scale_six_value: ["Più di oggi", "Esattamente come oggi", "Meno di oggi", "Non so", "Preferisco non rispondere"],
     scale_sept: "Se i tassi di interesse aumentano, cosa accadrà in genere ai prezzi delle obbligazioni?",
-    scale_sept_value: ["Aumenteranno", "Scenderanno", "Rimarranno uguali", "•	Non c’è una relazione tra i prezzi delle obbligazioni e i tassi di interesse", "Non so", "Preferisco non rispondere"],
+    scale_sept_value: ["Aumenteranno", "Scenderanno", "Rimarranno uguali", "Non c’è una relazione tra i prezzi delle obbligazioni e i tassi di interesse", "Non so", "Preferisco non rispondere"],
     scale_huit: "Un mutuo di 15 anni richiede in genere pagamenti mensili più elevati rispetto a un mutuo di 30 anni, ma l’ammontare totale degli interessi pagato durante il prestito sarà inferiore",
     scale_neuf: "L’acquisto di azioni di una singola società di solito è un investimento meno rischioso rispetto all’acquisto di quote di un fondo comune azionario.",
     scale_neuf_huit_value: ["Vero", "Falso", "Non so", "Preferisco non rispondere"],
@@ -182,7 +182,7 @@ export const it = {
     bulshit1: "Uno sciocco e il suo denaro sono presto separati.", 
     bulshit2: "Un budget ci dice quando una cosa non ce la possiamo permettere, ma non ci impedisce di acquistarla lo stesso.",
     bulshit3: "La finanza non riguarda solo il fare soldi. Si tratta di raggiungere i nostri obiettivi profondi e proteggere i frutti del nostro lavoro.",
-    bulshit4: "Ogni volta che prendi del denaro in prestito, stai derubando il tuo futuro sé stesso.",
+    bulshit4: "Ogni volta che prendi del denaro in prestito, stai derubando il tuo futuro te stesso.",
     bulshit5: "L'inflazione è tassazione senza legislazione.",
     bulshit6: "La ricchezza non è di chi ce l'ha, ma di chi se la gode.",
     bulshit7: "Un prestito a buon mercato è al di là di ogni nuovo destino.", 
@@ -192,7 +192,7 @@ export const it = {
     bulshit11: "I buoni investitori diffondono delle grandi azioni oltre le dimensioni.",
     bulshit12: "Libertà e spazio trasformano il significato astratto del denaro.",
     bulshit_corps: `Indica <b>il livello di significatività delle seguenti frasi</b> riguardanti la finanza utilizzando la scala sottostante a sei punti.`,
-    end: "Grazie per la vostra partecipazione."
+    end: "Grazie per la tua partecipazione."
 }
 
 export const en = {
