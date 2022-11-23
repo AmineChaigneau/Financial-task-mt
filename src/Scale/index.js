@@ -7,6 +7,7 @@ import { RadioButton } from '../Component/radio.styled'
 import { useNavigate } from 'react-router-dom';
 import { update_question_scale } from '../Redux/Actions/form'
 import { connect } from 'react-redux'
+import { page } from '../Redux/Actions/export'
 
 const Un = ({ value, onChange, text, handleNext }) => {
 
@@ -261,7 +262,7 @@ const Douze = ({ value, onChange, text, handleNext }) => {
     )
 }
 
-const Scale = ({ subject_id, update_question_scale, text }) => {
+const Scale = ({ subject_id, update_question_scale, text, page }) => {
 
     const navigate = useNavigate();
 
@@ -280,10 +281,10 @@ const Scale = ({ subject_id, update_question_scale, text }) => {
         l3: ''
     })
 
-    const [page, setPage] = useState(1);
+    const [state, setState] = useState(1);
 
     const display = () => {
-        switch (page) {
+        switch (state) {
             case 1:
                 return <Un value={data.r1} onChange={(e) => setData({ ...data, r1: e.target.value })} text={text} handleNext={handleNext} />
             case 2:
@@ -314,14 +315,15 @@ const Scale = ({ subject_id, update_question_scale, text }) => {
     }
 
     const handleNext = () => {
-        setPage(page + 1);
-
+        setState(state + 1);
+        page();
         console.log(data)
     }
 
     const handleRedirect = () => {
         update_question_scale({ subject_id: subject_id, form: data })
         navigate('/form')
+        page();
         // push state
     }
 
@@ -342,4 +344,4 @@ const mapStateToProps = state => ({
     text: state.textReducer.text,
 })
 
-export default connect(mapStateToProps, { update_question_scale })(Scale)
+export default connect(mapStateToProps, { update_question_scale, page })(Scale)

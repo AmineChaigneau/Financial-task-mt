@@ -7,8 +7,9 @@ import { TextArea } from '../Component/textarea.styled'
 import style from './index.module.css'
 import { update_formulaire } from '../Redux/Actions/form'
 import { connect } from 'react-redux'
+import { page } from '../Redux/Actions/export'
 
-const Formulaire = ({ subject_id, update_formulaire, text }) => {
+const Formulaire = ({ subject_id, update_formulaire, text, page }) => {
 
     const navigate = useNavigate()
 
@@ -35,6 +36,7 @@ const Formulaire = ({ subject_id, update_formulaire, text }) => {
     const onSubmit = e => {
         e.preventDefault();
         update_formulaire({form : formData, subject_id: subject_id})
+        page();
         navigate('/calibration')
     }
 
@@ -115,4 +117,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { update_formulaire })(Formulaire);
+export default connect(mapStateToProps, { update_formulaire, page })(Formulaire);

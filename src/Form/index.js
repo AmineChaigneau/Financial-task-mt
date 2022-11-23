@@ -6,6 +6,7 @@ import style from './index.module.css'
 import { connect } from 'react-redux'
 import { update_form } from '../Redux/Actions/form'
 import { useNavigate } from 'react-router-dom'
+import { page } from '../Redux/Actions/export'
 
 const ScaleItem = ({ label, value, onChange, text, handleChange }) => {
 
@@ -75,7 +76,7 @@ function usePagination(data, itemsPerPage) {
     return { next, prev, jump, currentData, currentPage, maxPage };
 }
 
-const Form = ({ update_form, subject_id, text }) => {
+const Form = ({ update_form, subject_id, text, page}) => {
 
     const navigate = useNavigate();
 
@@ -98,10 +99,11 @@ const Form = ({ update_form, subject_id, text }) => {
 
     const _DATA = usePagination(options, 1);
 
-    let [page, setPage] = useState(0);
+    let [state, setState] = useState(0);
 
     const handleNext = () => {
-        setPage(page + 1);
+        setState(state + 1);
+        page();
         _DATA.next();
     };
 
@@ -121,6 +123,7 @@ const Form = ({ update_form, subject_id, text }) => {
 
     const handleRedirect = () => {
         update_form({ subject_id: subject_id, form: options, time: 0 })
+        page();
         navigate('/End')
     }
 
@@ -138,18 +141,18 @@ const Form = ({ update_form, subject_id, text }) => {
                 )} */}
                 {_DATA.currentData().map((option, index) =>
                     <div className={style.wrapper} key={index}>
-                        <ScaleItem label={option.label} value={option.value} checked={option.checked} onChange={updateSelection(index + page)} text={text} handleChange={() => console.log('')}/>
+                        <ScaleItem label={option.label} value={option.value} checked={option.checked} onChange={updateSelection(index + state)} text={text} handleChange={() => console.log('')}/>
                         <Divider />
                     </div>
                 )}
             </div>
             <div className={style.button}>
-                {page === 11 ? (
+                {state === 11 ? (
                     <Button disabled={!completed} onClick={handleRedirect}>
                         {text.button}
                     </Button>
                 ) : (
-                    <Button disabled={!options[page].value.trim().length} onClick={handleNext}>
+                    <Button disabled={!options[state].value.trim().length} onClick={handleNext}>
                         {text.next}
                     </Button>
                 )}
@@ -163,4 +166,4 @@ const mapStateToProps = state => ({
     text: state.textReducer.text,
 })
 
-export default connect(mapStateToProps, { update_form })(Form)
+export default connect(mapStateToProps, { update_form, page })(Form)

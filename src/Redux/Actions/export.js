@@ -1,4 +1,4 @@
-import { UPDATE_EXPORT_SUCCESS, UPDATE_EXPORT_FAIL } from "./types";
+import { UPDATE_EXPORT_SUCCESS, UPDATE_EXPORT_FAIL , PAGE } from "./types";
 
 
 export const update_res = (res) => async dispatch => {
@@ -13,3 +13,9 @@ export const update_res = (res) => async dispatch => {
         });
     }
 };
+
+export const page = () => async dispatch => {
+    dispatch({
+        type: PAGE,
+    });
+}

@@ -6,6 +6,7 @@ import { useMousePosition } from '../hook'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { update_calibration } from '../Redux/Actions/calibration'
+import { page } from '../Redux/Actions/export'
 
 const Tracker = ({ stateChanger, ...rest }) => {
 
@@ -23,7 +24,7 @@ const Tracker = ({ stateChanger, ...rest }) => {
     )
 }
 
-const CalibrationMT = ({ update_calibration, subject_id, text }) => {
+const CalibrationMT = ({ update_calibration, subject_id, text, page }) => {
 
     const navigate = useNavigate();
 
@@ -79,6 +80,7 @@ const CalibrationMT = ({ update_calibration, subject_id, text }) => {
 
     const handleRedirect = () => {
         navigate('/risk')
+        page();
     }
 
     return (
@@ -122,4 +124,4 @@ const mapStateToProps = state => ({
     text: state.textReducer.text,
 })
 
-export default connect(mapStateToProps, { update_calibration })(CalibrationMT)
+export default connect(mapStateToProps, { update_calibration, page })(CalibrationMT)

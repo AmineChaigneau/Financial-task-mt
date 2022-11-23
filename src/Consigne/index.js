@@ -9,6 +9,7 @@ import image from '../Component/ressources/img_test.jpeg'
 import image_it from '../Component/ressources/img_test_it.jpeg'
 import image_en from '../Component/ressources/img_test_en.jpeg'
 import { connect } from 'react-redux'
+import { page } from '../Redux/Actions/export'
 
 const Un = ({ onClick, text }) => {
     return (
@@ -71,20 +72,30 @@ const Trois = ({ onClick, text, langue }) => {
 }
 
 
-const Consigne = ({ text, langue }) => {
+const Consigne = ({ text, langue, page }) => {
 
     const navigate = useNavigate();
 
-    const [page, setPage] = useState(1);
+    const [state, setState] = useState(1);
+
+    const handleClick = () => {
+        setState(state + 1)
+        page();
+    }
+
+    const handleRedirect = () => {
+        page();
+        navigate('/stimuli')
+    }
 
     const display = () => {
-        switch (page) {
+        switch (state) {
             case 1:
-                return <Un onClick={() => setPage(page + 1)} text={text}/>
+                return <Un onClick={handleClick} text={text}/>
             case 2:
-                return <Deux onClick={() => setPage(page + 1)} text={text}/>
+                return <Deux onClick={handleClick} text={text}/>
             case 3:
-                return <Trois onClick={() => navigate('/stimuli')} text={text} langue={langue}/>
+                return <Trois onClick={handleRedirect} text={text} langue={langue}/>
             default:
                 return <div>Err</div>
         }
@@ -95,7 +106,7 @@ const Consigne = ({ text, langue }) => {
             <div className={style.container}>
                 {display()}
             </div>
-            {page <= 2 && <div className={style.footer} dangerouslySetInnerHTML={{__html: text.contact }} />}
+            {state <= 2 && <div className={style.footer} dangerouslySetInnerHTML={{__html: text.contact }} />}
         </div>
     )
 }
@@ -105,4 +116,4 @@ const mapStateToProps = state => ({
     langue: state.textReducer.langue,
 })
 
-export default connect(mapStateToProps)(Consigne)
+export default connect(mapStateToProps, { page })(Consigne)

@@ -5,7 +5,7 @@ import style from './index.module.css'
 import { Typography } from "../Component/styles/typography.styled";
 import { Button } from "../Component/button.styled";
 import { RangeSlider, RangeNumber } from "../Component/slider.styled";
-import { RadioButton } from "../Component/radio.styled";
+import { page } from '../Redux/Actions/export'
 import { update_form_trial, update_form_trial_list } from '../Redux/Actions/form';
 
 const Trois = ({ slider, onClick, onChange, value, text }) => {
@@ -95,7 +95,7 @@ const Divider = () => {
     )
 }
 
-const Question = ({ nb_trial, update_form_trial, update_form_trial_list, text }) => {
+const Question = ({ nb_trial, update_form_trial, update_form_trial_list, text, page }) => {
 
     const navigate = useNavigate();
 
@@ -122,11 +122,13 @@ const Question = ({ nb_trial, update_form_trial, update_form_trial_list, text })
 
     const handleRedirect = () => {
         update_form_trial(value)
+        page();
         navigate('/stimuli')
     }
 
     const handleEnd = () => {
         // update_form_trial(value)
+        page();
         update_form_trial_list(options.map((option) => option.value))
         navigate('/scale')
     }
@@ -185,4 +187,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { update_form_trial, update_form_trial_list })(Question)
+export default connect(mapStateToProps, { update_form_trial, update_form_trial_list, page })(Question)

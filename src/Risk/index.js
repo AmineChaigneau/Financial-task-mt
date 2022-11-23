@@ -7,8 +7,9 @@ import { TextArea } from "../Component/textarea.styled";
 import { useNavigate } from 'react-router-dom';
 import { update_risk_scale } from '../Redux/Actions/form'
 import { connect } from "react-redux";
+import { page } from '../Redux/Actions/export'
 
-const Risk = ({ subject_id, update_risk_scale, text }) => {
+const Risk = ({ subject_id, update_risk_scale, text, page }) => {
 
     // const [value, setValue] = useState(50);
 
@@ -49,13 +50,13 @@ const Risk = ({ subject_id, update_risk_scale, text }) => {
 
     const handleClick = () => {
         setGame(true)
+        page();
     }
 
     const onSubmit = e => {
         e.preventDefault();
         update_risk_scale({ subject_id: subject_id, form: formData, slider: slider})
-        console.log(slider)
-        console.log(formData)
+        page();
         navigate('/consigne')
     }
 
@@ -114,4 +115,4 @@ const mapStateToProps = state => ({
     text: state.textReducer.text,
 })
 
-export default connect(mapStateToProps, { update_risk_scale })(Risk);
+export default connect(mapStateToProps, { update_risk_scale, page })(Risk);

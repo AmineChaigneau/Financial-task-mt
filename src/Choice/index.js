@@ -6,8 +6,9 @@ import { useMousePosition, getRandomArbitrary } from '../hook'
 import { connect } from 'react-redux'
 import { update_tracking } from '../Redux/Actions/current'
 import { useNavigate } from 'react-router-dom'
+import { page } from '../Redux/Actions/export'
 
-const Tracker = ({ stateChanger, ...rest }) => {
+const Tracker = ({ stateChanger, page, ...rest }) => {
 
     const start = new Date();
 
@@ -23,7 +24,7 @@ const Tracker = ({ stateChanger, ...rest }) => {
     )
 }
 
-const Choice = ({ update_tracking, text }) => {
+const Choice = ({ update_tracking, text, page }) => {
 
     const navigate = useNavigate();
 
@@ -80,6 +81,7 @@ const Choice = ({ update_tracking, text }) => {
         setTracking(false)
         update_tracking({ time: end - reactionTime, tracking: tracker, choice: 'non', output: false, invert: invert })
         navigate('/temp')
+        page();
     }
 
     const handleClickRight = () => {
@@ -89,6 +91,7 @@ const Choice = ({ update_tracking, text }) => {
         setTracking(false)
         update_tracking({ time: end - reactionTime, tracking: tracker, choice: 'oui', output: true, invert: invert })
         navigate('/temp')
+        page();
     }
 
     useEffect(() => {
@@ -137,4 +140,4 @@ const mapStateToProps = state => ({
     text: state.textReducer.text
 })
 
-export default connect(mapStateToProps, { update_tracking })(Choice)
+export default connect(mapStateToProps, { update_tracking, page })(Choice)

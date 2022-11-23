@@ -7,8 +7,9 @@ import { ReactComponent as Fixed } from '../Component/ressources/fixed.svg'
 import image from '../Component/ressources/charlie.png'
 import rules from '../Component/ressources/Training_rules.png'
 import { connect } from 'react-redux'
+import { page } from '../Redux/Actions/export'
 
-const Calibration = ({ text }) => {
+const Calibration = ({ text, page }) => {
 
     const navigate = useNavigate()
 
@@ -22,6 +23,7 @@ const Calibration = ({ text }) => {
 
     const handleRedirect = () => {
         navigate('/calibrationmt')
+        page()
     }
 
     const t = 5000;
@@ -39,6 +41,7 @@ const Calibration = ({ text }) => {
                         setPosition({ top: '90%', left: '10%' })
                         timer.current = setTimeout(() => {
                             setEnd(true)
+                            page()
                         }, t)
                     }, t)
                 }, t)
@@ -97,4 +100,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps)(Calibration)
+export default connect(mapStateToProps, { page })(Calibration)

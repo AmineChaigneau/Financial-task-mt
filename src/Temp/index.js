@@ -2,8 +2,9 @@ import { useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import { update_res } from '../Redux/Actions/export'
 import { useNavigate } from 'react-router-dom'
+import { page } from '../Redux/Actions/export'
 
-const Temp = ({ update_res, current_trial, nb_trial }) => {
+const Temp = ({ update_res, current_trial, nb_trial, page }) => {
 
     const navigate = useNavigate();
 
@@ -13,6 +14,7 @@ const Temp = ({ update_res, current_trial, nb_trial }) => {
         if (isInitialMount.current) {
             isInitialMount.current = false;
         } else {
+            page();
             if (nb_trial === 0) {
                 update_res(current_trial)
                 navigate('/question')
@@ -43,4 +45,4 @@ const mapStateToProps = state => ({
     nb_trial: state.exportReducer.nb_trial,
 })
 
-export default connect(mapStateToProps, { update_res })(Temp)
+export default connect(mapStateToProps, { update_res, page })(Temp)

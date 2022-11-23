@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import style from './index.module.css'
 // import { resetStore } from '../Redux/Actions/reset'
 import { connect } from 'react-redux'
+import { page } from '../Redux/Actions/export'
 
-const Home = ({ subject_id_global, text }) => {
+const Home = ({ subject_id_global, text, page }) => {
 
     // useEffect(() => {
     //     resetStore()
@@ -15,6 +16,7 @@ const Home = ({ subject_id_global, text }) => {
 
     const handleClick = () => {
         navigate('/formulaire')
+        page();
     }
 
     return (
@@ -43,5 +45,5 @@ const mapStateToProps = state => ({
     text: state.textReducer.text,
 })
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps, { page })(Home)
 
