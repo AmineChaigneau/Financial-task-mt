@@ -69,10 +69,16 @@ const Choice = ({ update_tracking, text, page }) => {
     }, [mousePos, setDisabled, tracking]);
 
     const handleClick = () => {
-        setDisabled({ ...disabled, square: false })
-        setTracking(true)
-        setStarting(mousePos.y)
-        console.log(mousePos.y) // bug a regler = prendre max ecran + 10 si undefined 
+
+        const err = typeof mousePos.y !== "undefined" ? true : false
+
+        if(err) {
+            setDisabled({ ...disabled, square: false })
+            setTracking(true)
+            setStarting(mousePos.y)
+        }
+
+        console.log(err)
     }
 
     const handleClickLeft = () => {
