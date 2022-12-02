@@ -10,7 +10,7 @@ const Stimuli = ({ trial_global, update_trials, update_current, nb_trial }) => {
 
     const navigate = useNavigate()
 
-    const isInitialMount = useRef(true);
+    // const isInitialMount = useRef(true);
 
     const timer = useRef();
 
@@ -21,26 +21,11 @@ const Stimuli = ({ trial_global, update_trials, update_current, nb_trial }) => {
         img: ''
     })
 
-    // const [trialList, setTrialList] = useState(0)
-
     useEffect(() => {
         timer.current = setTimeout(() => {
             setTime(false)
         }, 1500)
     }, [timer, setTime])
-
-    // useEffect(() => {
-    //     timer.current = setTimeout(() => {
-    //         if (isInitialMount.current) {
-    //             isInitialMount.current = false;
-    //          } else {
-    //             navigate('/choice')
-    //             update_trials(trialList)
-    //             update_current(trial.id_trial)
-    //          }
-    //     }, 5000)
-    // }, [])
-
 
     useEffect(() => {
         const index = Math.floor(Math.random() * trial_global.length);
@@ -48,21 +33,20 @@ const Stimuli = ({ trial_global, update_trials, update_current, nb_trial }) => {
         const item = trial_global.length !== 0 ?
             trial_global[index] : trial_global[Math.floor(Math.random() * trial_global.length)];
 
-        // setTrialList(index)
-
         setTrial({
             id_trial: item.id_trial,
             img: item.img
         })
 
         timer.current = setTimeout(() => {
-            if (isInitialMount.current) {
-                isInitialMount.current = false;
-            } else {
+            // if (isInitialMount.current) {
+            //     isInitialMount.current = false;
+            //     console.log('non')
+            // } else {
                 navigate('/choice')
                 update_trials(index)
                 update_current(item.id_trial)
-            }
+            // }
         }, 60000)
 
     }, [])

@@ -8,12 +8,12 @@ const Temp = ({ update_res, current_trial, nb_trial, page }) => {
 
     const navigate = useNavigate();
 
-    const isInitialMount = useRef(true);
+    // const isInitialMount = useRef(true);
 
     useEffect(() => {
-        if (isInitialMount.current) {
-            isInitialMount.current = false;
-        } else {
+        // if (isInitialMount.current) {
+        //     isInitialMount.current = false;
+        // } else {
             page();
             if (nb_trial === 0) {
                 update_res(current_trial)
@@ -31,7 +31,7 @@ const Temp = ({ update_res, current_trial, nb_trial, page }) => {
                 update_res(current_trial)
                 navigate('/stimuli')
             }
-        }
+        // }
     }, [update_res, navigate, current_trial])
 
     return (

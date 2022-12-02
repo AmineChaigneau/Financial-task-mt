@@ -28,7 +28,7 @@ const Choice = ({ update_tracking, text, page }) => {
 
     const navigate = useNavigate();
 
-    const isInitialMount = useRef(true);
+    // const isInitialMount = useRef(true);
 
     const [disabled, setDisabled] = useState({
         square: true,
@@ -102,9 +102,9 @@ const Choice = ({ update_tracking, text, page }) => {
     }
 
     useEffect(() => {
-        if (isInitialMount.current) {
-            isInitialMount.current = false;
-        } else {
+        // if (isInitialMount.current) {
+        //     isInitialMount.current = false;
+        // } else {
             const d = new Date();
             const start = d.getTime();
 
@@ -112,7 +112,7 @@ const Choice = ({ update_tracking, text, page }) => {
 
             const prob = getRandomArbitrary(0, 1)
             setInvert(prob > .5 ? true : false)
-        }
+        // }
     }, [setInvert])
 
     return (
