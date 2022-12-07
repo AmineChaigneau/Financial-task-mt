@@ -17,6 +17,8 @@ import Choice from './Choice'
 import Temp from './Temp'
 import Question from './Question'
 import Scale from './Scale'
+import Distress from './Distress'
+import Temporal from './Temporal'
 import End from './End'
 import Test from './Test'
 import Langue from './Langue'
@@ -41,44 +43,50 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <FullScreen>
-          <Routes>
-            <Route path="/" element={<Langue />} />
-            <Route element={<Layout />}>
-              <Route path="/home" element={<Home />} />
-            </Route>
-            <Route element={<Layout />}>
-              <Route path="/form" element={<Form />} />
-            </Route>
-            <Route element={<Layout />}>
-              <Route path="/formulaire" element={<Formulaire />} />
-            </Route>
-            <Route element={<Layout />}>
-              <Route path="/consigne" element={<Consigne />} />
-            </Route>
-            <Route element={<Layout />}>
-              <Route path="/calibration" element={<Calibration />} />
-            </Route>
-            <Route path="/calibrationmt" element={<CalibrationMT />} />
-            <Route element={<Layout />}>
-              <Route path="/risk" element={<Risk />} />
-            </Route>
-            <Route element={<Layout />}>
-              <Route path="/transition" element={<Transition />} />
-            </Route>
-            <Route path="/stimuli" element={<Stimuli />} />
-            <Route path="/choice" element={<Choice />} />
-            <Route path="/temp" element={<Temp />} />
-            <Route element={<Layout />}>
-              <Route path="/question" element={<Question />} />
-            </Route>
-            <Route element={<Layout />}>
-              <Route path="/scale" element={<Scale />} />
-            </Route>
-            <Route element={<Layout />}>
-              <Route path="/end" element={<End />} />
-            </Route>
-            <Route path="/test" element={<Test />} />
-          </Routes>
+        <Routes>
+          <Route path="/" element={<Langue />} />
+          <Route element={<Layout />}>
+            <Route path="/home" element={<Home />} />
+          </Route>
+          <Route element={<Layout />}>
+            <Route path="/form" element={<Form />} />
+          </Route>
+          <Route element={<Layout />}>
+            <Route path="/formulaire" element={<Formulaire />} />
+          </Route>
+          <Route element={<Layout />}>
+            <Route path="/consigne" element={<Consigne />} />
+          </Route>
+          <Route element={<Layout />}>
+            <Route path="/calibration" element={<Calibration />} />
+          </Route>
+          <Route path="/calibrationmt" element={<CalibrationMT />} />
+          <Route element={<Layout />}>
+            <Route path="/risk" element={<Risk />} />
+          </Route>
+          <Route element={<Layout />}>
+            <Route path="/transition" element={<Transition />} />
+          </Route>
+          <Route path="/stimuli" element={<Stimuli />} />
+          <Route path="/choice" element={<Choice />} />
+          <Route path="/temp" element={<Temp />} />
+          <Route element={<Layout />}>
+            <Route path="/question" element={<Question />} />
+          </Route>
+          <Route element={<Layout />}>
+            <Route path="/scale" element={<Scale />} />
+          </Route>
+          <Route element={<Layout />}>
+            <Route path="/distress" element={<Distress />} />
+          </Route>
+          <Route element={<Layout />}>
+            <Route path="/temporal" element={<Temporal />} />
+          </Route>
+          <Route element={<Layout />}>
+            <Route path="/end" element={<End />} />
+          </Route>
+          <Route path="/test" element={<Test />} />
+        </Routes>
         </FullScreen>
       </ThemeProvider>
     </Router>

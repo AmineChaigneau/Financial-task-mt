@@ -1,5 +1,5 @@
 .form {
-    margin: 10px 0px;
+    margin: 100px 0px;
 }
 
 .form > :nth-child(1) {
@@ -85,4 +85,17 @@
 
 .button {
     margin: 10px 0px
+}
+
+.intro {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.intro > p {
+    max-width: 800px;
+    text-align: center;
 }

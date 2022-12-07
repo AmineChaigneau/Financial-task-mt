@@ -14,6 +14,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    gap: 20px;
 }
 
 .slider {
@@ -23,7 +24,7 @@
 
 .header {
     margin-bottom: 50px;
-    max-width: 600px;
+    max-width: 650px;
     width: 100%;
 }
 
@@ -38,28 +39,14 @@
     width: 100%;
 }
 
-.label > p {
-    font-size: 15px;
-    margin: 0;
+.scaleLabel {
     text-align: center;
-    max-width: 100px;
+    max-width: 150px;
 }
 
-.form {
-    width: 100%;
-    max-width: 600px;
-}
 
 .button {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-top: 50px;
-}
-
-.rangeNumber {
-    width: 100%;
 }
 
 .intro {

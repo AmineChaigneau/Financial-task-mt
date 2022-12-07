@@ -25,7 +25,7 @@ const Layout = ({ len }) => {
         <div className={style.root}>
             <Outlet />
             <ProgressBackground/>
-            <ProgressBar length={(len * 1.6129)}></ProgressBar>
+            <ProgressBar length={(len * 1.2345679)}></ProgressBar>
         </div>
     )
 }

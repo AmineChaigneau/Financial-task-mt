@@ -283,6 +283,8 @@ const Scale = ({ subject_id, update_question_scale, text, page }) => {
 
     const [state, setState] = useState(1);
 
+    const [start, setStart] = useState(false);
+
     const display = () => {
         switch (state) {
             case 1:
@@ -317,7 +319,6 @@ const Scale = ({ subject_id, update_question_scale, text, page }) => {
     const handleNext = () => {
         setState(state + 1);
         page();
-        console.log(data)
     }
 
     const handleRedirect = () => {
@@ -329,12 +330,23 @@ const Scale = ({ subject_id, update_question_scale, text, page }) => {
 
     return (
         <div className={style.root}>
-            <div className={style.header}>
-                <Typography variant={'h4'}><i>{text.scale_corps}</i></Typography>
-            </div>
-            <div className={style.container}>
-                {display()}
-            </div>
+            {start ? (
+                <>
+                    <div className={style.headerContainer}>
+                        <Typography variant={'h4'}><i>{text.scale_corps}</i></Typography>
+                    </div>
+                    <div className={style.container}>
+                        {display()}
+                    </div>
+                </>
+            ) : (
+                <div className={style.intro}>
+                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.intro_test }} />
+                    <Button onClick={() => setStart(true)}>
+                        {text.button}
+                    </Button>
+                </div>
+            )}
         </div>
     )
 }

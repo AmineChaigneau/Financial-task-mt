@@ -24,7 +24,7 @@ const Tracker = ({ stateChanger, page, ...rest }) => {
     )
 }
 
-const Choice = ({ update_tracking, text, page }) => {
+const Choice = ({ update_tracking, text, page, invert }) => {
 
     const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ const Choice = ({ update_tracking, text, page }) => {
 
     const [tracking, setTracking] = useState(false);
 
-    const [invert, setInvert] = useState(false);
+    // const [invert, setInvert] = useState(false);
 
     const [tracker, setTracker] = useState([]);
 
@@ -77,8 +77,6 @@ const Choice = ({ update_tracking, text, page }) => {
             setTracking(true)
             setStarting(mousePos.y)
         }
-
-        console.log(err)
     }
 
     const handleClickLeft = () => {
@@ -110,10 +108,11 @@ const Choice = ({ update_tracking, text, page }) => {
 
             setReactionTime(start)
 
-            const prob = getRandomArbitrary(0, 1)
-            setInvert(prob > .5 ? true : false)
+            // const prob = getRandomArbitrary(0, 1)
+            // setInvert(prob > .5 ? true : false)
         // }
-    }, [setInvert])
+    }, [])
+    // }, [setInvert])
 
     return (
         <div className={style.root}>
@@ -144,7 +143,8 @@ const Choice = ({ update_tracking, text, page }) => {
 }
 
 const mapStateToProps = state => ({
-    text: state.textReducer.text
+    text: state.textReducer.text,
+    invert: state.textReducer.invert,
 })
 
 export default connect(mapStateToProps, { update_tracking, page })(Choice)

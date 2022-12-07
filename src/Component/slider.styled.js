@@ -182,7 +182,7 @@ export const RangeSlider = ({
       {arr.map((item, key) => {
         return (
           <div key={key} style={{ zIndex: 10 }}>
-            <RadioButton value={item} label={key} row={true}/>
+            <RadioButton value={item} label={item} row={true} />
           </div>
         )
       })}

@@ -1,9 +1,10 @@
-import { UPDATE_LANGUE, UPDATE_LANGUE_FAIL } from '../Actions/types'
+import { UPDATE_LANGUE, UPDATE_LANGUE_FAIL, SET_INVERT, SET_INVERT_FAIL } from '../Actions/types'
 import { fr } from '../../Component/ressources/text'
 
 const initialState = {
     langue: 'fr',
-    text: fr
+    text: fr,
+    invert: false
 }
 
 export default function textReducer(state = initialState, action) {
@@ -18,6 +19,15 @@ export default function textReducer(state = initialState, action) {
                 text: payload.text
             }
     case UPDATE_LANGUE_FAIL:
+            return {
+                ...state
+            }
+    case SET_INVERT:
+            return {
+                ...state,
+                invert: payload
+            }
+    case SET_INVERT_FAIL:
             return {
                 ...state
             }

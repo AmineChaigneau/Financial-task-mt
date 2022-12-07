@@ -1,4 +1,4 @@
-import { UPDATE_FORM, UPDATE_BULSHIT, UPDATE_TRIAL_FORM, UPDATE_RISK, UPDATE_SCALE, UPDATE_FORM_FAIL, UPDATE_TRIAL_FORMLIST } from "./types";
+import { UPDATE_FORM, UPDATE_BULSHIT, UPDATE_TRIAL_FORM, UPDATE_RISK, UPDATE_SCALE, UPDATE_FORM_FAIL, UPDATE_TRIAL_FORMLIST, UPDATE_TEMPORAL, UPDATE_DISTRESS } from "./types";
 
 
 export const update_form = (res) => async dispatch => {
@@ -70,6 +70,32 @@ export const update_question_scale = (res) => async dispatch => {
     try {
         dispatch({
             type: UPDATE_SCALE,
+            payload: res
+        });
+    } catch (err) {
+        dispatch({
+            type: UPDATE_FORM_FAIL
+        });
+    }
+};
+
+export const update_distress_scale = (res) => async dispatch => {
+    try {
+        dispatch({
+            type: UPDATE_DISTRESS,
+            payload: res
+        });
+    } catch (err) {
+        dispatch({
+            type: UPDATE_FORM_FAIL
+        });
+    }
+};
+
+export const update_temporal_scale = (res) => async dispatch => {
+    try {
+        dispatch({
+            type: UPDATE_TEMPORAL,
             payload: res
         });
     } catch (err) {
