@@ -1,131 +1,275 @@
-import { useState, useEffect, useRef } from 'react'
-import { Button, MTbutton } from '../Component/button.styled'
+import { useState, useEffect } from 'react'
+import { Button } from '../Component/button.styled'
 import { Typography } from '../Component/styles/typography.styled'
 import style from './index.module.css'
-import { useMousePosition, getRandomArbitrary } from '../hook'
+import bomb from './bomb.svg'
+import checked from './checked.svg'
+import reward from './reward.svg'
+import { getRandomArbitrary } from '../hook'
+import { useNavigate } from 'react-router-dom';
+import { page } from '../Redux/Actions/export'
+import styled from 'styled-components'
+import { update_risk_game } from '../Redux/Actions/form'
+import { connect } from 'react-redux'
 
-const Tracker = ({ stateChanger, ...rest }) => {
+const BoxContainer = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border: solid 1px #A5A5A5;
+    box-shadow: 0px 2px 6px 3px rgba(165,165,165,0.21);
+    
+    .unshow {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: ${((props) => props.show ? 'transparent' : 'white')};
+        z-index: 4;
+    }
 
-    const start = new Date();
+    .check {
+        visibility: ${((props) => props.check ? 'visible' : 'hidden')};
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: url(${checked});
+        background-size: 100% 100%;
+        z-index: 5;
+    }
 
-    const position = useMousePosition(start);
+    .bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 5px;
+        width: 100%;
+        background: #2EA44F66;
+        z-index: 5;
+    }
 
-    useEffect(() => {
-        stateChanger(position)
-    }, [position])
+    #bomb {
+        background: url(${bomb}), #D24B4B66;
+    }
+
+    #reward {
+        background: url(${reward}), #2EA44F66;
+    }
+
+`
+
+const BoxContent = styled.div`
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+`
+
+const Box = ({ boxId, id, children, show, check, ...props }) => {
 
     return (
-        <>
-        </>
+        <BoxContainer boxId={boxId} show={show} check={check} {...props}>
+            <BoxContent id={id} />
+            <div className='check'></div>
+            <div className='bottom'></div>
+            <div className='unshow'></div>
+        </BoxContainer>
     )
 }
 
-const Test = () => {
+const Test = ({ text, update_risk_game, page }) => {
 
-    const isInitialMount = useRef(true);
+    const navigate = useNavigate()
 
-    const [disabled, setDisabled] = useState({
-        square: true,
-        option: true
-    });
-
-    const [tracking, setTracking] = useState(false);
-
-    const [invert, setInvert] = useState(false);
-
-    const [tracker, setTracker] = useState([]);
-
-    const [reactionTime, setReactionTime] = useState(0);
-
-    const [mousePos, setMousePos] = useState({});
-
-    const [starting, setStarting] = useState();
-
-    useEffect(() => {
-        const handleMouseMove = (event) => {
-            setMousePos({ x: event.clientX, y: event.clientY });
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-            window.removeEventListener(
-                'mousemove',
-                handleMouseMove
-            );
-        };
-    }, []);
-
-    useEffect(() => {
-        if (disabled.option) {
-            tracking && mousePos.y <= starting - 50 && setDisabled({ ...disabled, option: false })
+    function range(start = 1, end = 10) {
+        const ans = [];
+        for (let i = start; i <= end; i++) {
+            ans.push(i);
         }
-    }, [mousePos, setDisabled, tracking]);
-
-    const handleClick = () => {
-        setDisabled({ ...disabled, square: false })
-        setTracking(true)
-        setStarting(mousePos.y)
+        return ans;
     }
 
-    const handleClickLeft = () => {
-        console.log(tracker)
-        setTracking(false)
-        setDisabled({
-            square: true,
-            option: true
-        })
-    }
+    const arr = range(0, 99)
 
-    const handleClickRight = () => {
-        console.log(tracker)
-        setTracking(false)
-        setDisabled({
-            square: true,
-            option: true
-        })
-    }
+    const [bomb, setBomb] = useState(Math.round(getRandomArbitrary(0, 99)))
+
+    const [checkedBox, setCheckedBox] = useState(new Array(100).fill(false))
+
+    const [show, setShow] = useState(new Array(100).fill(false))
+
+    const [disabled, setDisabled] = useState({ start: false, stop: true, reveal: true, output: true })
+
+    const [isActive, setIsActive] = useState(false);
+
+    const [isPaused, setIsPaused] = useState(true);
+
+    const [output, setOutput] = useState(false);
+
+    const [time, setTime] = useState(0);
+
+    const [value, setValue] = useState(0);
+
+    const [round, setRound] = useState(1);
+
+    const [data, setData] = useState([])
 
     useEffect(() => {
-        if (isInitialMount.current) {
-            isInitialMount.current = false;
+        let interval = null;
+        // console.log('init')
+        if (isActive && isPaused === false) {
+            interval = setInterval(() => {
+                setTime((time) => time + 700);
+            }, 700);
         } else {
-            const d = new Date();
-            const start = d.getTime();
-
-            setReactionTime(start)
-
-            const prob = getRandomArbitrary(0, 1)
-            setInvert(prob > .5 ? true : false)
+            clearInterval(interval);
+            // console.log('clear')
         }
-    }, [setInvert])
+        return () => {
+            clearInterval(interval);
+            // console.log('return clear')
+        };
+    }, [isActive, isPaused]);
+
+    useEffect(() => {
+        if (isActive && isPaused === false) {
+
+            if (value < 100) {
+                const newArr = [...checkedBox]
+    
+                const indices = newArr.flatMap((bool, index) => bool ? [] : index)
+    
+                const randomIndex = Math.floor(Math.random() * indices.length);
+    
+                const reveal = indices[randomIndex]
+    
+                newArr[reveal] = !newArr[reveal]
+    
+                setCheckedBox(newArr)
+    
+                setValue(value + 1)
+            } else {
+                handlePause();
+            }
+        }
+    }, [time]);
+
+    const handleTrialStart = () => {
+        setIsActive(true);
+        setIsPaused(false);
+        setDisabled({ ...disabled, start: true, stop: false })
+    }
+
+    const handlePause = () => {
+        setIsPaused(!isPaused)
+        setDisabled({ ...disabled, start: false, stop: true, reveal: false })
+    }
+
+    const handleEndTrial = () => {
+        setShow(checkedBox)
+
+        const newArr = []
+        for (let i = 0; i < checkedBox.length; i++) {
+            if (String(checkedBox[i]).indexOf(true) >= 0) {
+                newArr.push(i)
+            }
+        }
+        setOutput(newArr.indexOf(bomb) !== -1)
+
+        // console.log(newArr.indexOf(bomb) !== -1)
+        // console.log(bomb)
+        // console.log(checkedBox)
+
+        setCheckedBox(new Array(100).fill(false))
+        setDisabled({ ...disabled, start: true, output: false, reveal: true })
+    }
+
+    const handleNextRound = () => {
+        const score = output ? 0 : value;
+
+        setData([...data, value, score])
+
+        setRound(round + 1)
+
+        setBomb(Math.round(getRandomArbitrary(0, 99)))
+
+        setShow(new Array(100).fill(false))
+
+        setDisabled({ ...disabled, start: false, stop: true, reveal: true, output: true })
+
+        setValue(0)
+        setTime(0)
+        page();
+    }
+
+    const handleRedirect = () => {
+        const score = output ? 0 : value;
+        
+        update_risk_game([...data, value, score])
+
+        page();
+
+        navigate('/consigne')
+    }
 
     return (
         <div className={style.root}>
-            <div className={style.choice} style={{ flexDirection: invert ? 'row-reverse' : '', opacity: disabled.square ? 0 : 1 }}>
-                <MTbutton disabled={disabled.option} bg={false} onClick={handleClickLeft}>
-                    Non
-                </MTbutton>
-                <MTbutton disabled={disabled.option} bg={true} onClick={handleClickRight}>
-                    Oui
-                </MTbutton>
+            <div className={style.boxContainer}>
+                {arr.map((item, key) =>
+                    <Box boxId={item} key={key} id={bomb === item ? 'bomb' : 'reward'} show={show[key]} check={checkedBox[key]}>
+                    </Box>
+                )}
+                <div className={style.boxInfo}>
+                    <div className={style.label}>
+                        <Typography variant={'h5'}>{text.bomb_revard}</Typography>
+                        <Typography variant={'h4'}>{value}</Typography>
+                    </div>
+                    <div className={style.label}>
+                        <Typography variant={'h5'}>{text.bomb_revard2}</Typography>
+                        <Typography variant={'h4'}>{100 - value}</Typography>
+                    </div>
+                </div>
+                <div className={style.boxOutput} style={{ visibility: disabled.output ? 'hidden' : 'visible' }}>
+                    {output ? (
+                        <div className={style.output}>
+                            <Typography variant={'h5'} dangerouslySetInnerHTML={{ __html: text.bomb_miss }} />
+                            <Box id='bomb' show={true} check={false} style={{ border: 'none' }} />
+                        </div>
+                    ) : (
+                        <div className={style.output}>
+                            <Typography variant={'h5'} dangerouslySetInnerHTML={{ __html: text.bomb_ok }} />
+                            <Typography variant={'h4'}>{value}</Typography>
+                        </div>
+                    )}
+                    {round === 3 ? (
+                        <Button onClick={handleRedirect} style={{ display: disabled.output ? 'none' : '' }}>
+                            {text.button}
+                        </Button>
+                    ) : (
+                        <Button onClick={handleNextRound} style={{ display: disabled.output ? 'none' : '' }}>
+                            {text.button4} ({round}/3)
+                        </Button>
+                    )}
+                </div>
             </div>
-            <div className={style.question}>
-                <Typography>
-                    (Test) D'après les informations affichées, investiriez-vous votre argent dans ce fonds d'investissement ?  ({mousePos.x}, {mousePos.y})
-                </Typography>
-                <Typography>
-                    <i>Vous devez répondre le plus rapidement et précisément possible.</i>
-                </Typography>
+            <div className={style.action}>
+                <Button disabled={disabled.start} onClick={handleTrialStart}>Start</Button>
+                <Button disabled={disabled.stop} onClick={handlePause}>Stop</Button>
+                <Button disabled={disabled.reveal} onClick={handleEndTrial}>Reveal</Button>
             </div>
-            <div className={style.start}>
-                <Button className='outlined' onClick={handleClick} disabled={!disabled} style={{ opacity: disabled ? 1 : 0 }}>
-                    +
-                </Button>
-            </div>
-            {tracking ? <Tracker stateChanger={setTracker} /> : null}
         </div>
     )
 }
 
-export default Test
+const mapStateToProps = state => ({
+    text: state.textReducer.text,
+})
+
+export default connect(mapStateToProps, { page, update_risk_game })(Test)

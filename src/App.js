@@ -65,6 +65,9 @@ function App() {
             <Route path="/risk" element={<Risk />} />
           </Route>
           <Route element={<Layout />}>
+            <Route path="/test" element={<Test />} />
+          </Route>
+          <Route element={<Layout />}>
             <Route path="/transition" element={<Transition />} />
           </Route>
           <Route path="/stimuli" element={<Stimuli />} />
@@ -85,7 +88,6 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/end" element={<End />} />
           </Route>
-          <Route path="/test" element={<Test />} />
         </Routes>
         </FullScreen>
       </ThemeProvider>

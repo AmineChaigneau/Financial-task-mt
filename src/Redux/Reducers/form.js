@@ -1,4 +1,4 @@
-import { UPDATE_FORM, UPDATE_BULSHIT, UPDATE_RISK, UPDATE_TRIAL_FORM, UPDATE_FORM_FAIL, UPDATE_SCALE, UPDATE_TRIAL_FORMLIST, UPDATE_DISTRESS, UPDATE_TEMPORAL } from '../Actions/types'
+import { UPDATE_FORM, UPDATE_BULSHIT, UPDATE_RISK, UPDATE_TRIAL_FORM, UPDATE_FORM_FAIL, UPDATE_SCALE, UPDATE_TRIAL_FORMLIST, UPDATE_DISTRESS, UPDATE_TEMPORAL, UPDATE_RISK_GAME } from '../Actions/types'
 
 const initialState =  {
     subject_id: 0,
@@ -38,8 +38,12 @@ export default function formReducer(state = initialState, action) {
             return {
                 ...state,
                 subject_id: payload.subject_id,
-                risk_game: [payload.form.essai1, payload.form.essai2],
                 risk_scale: payload.slider
+            }
+        case UPDATE_RISK_GAME:
+            return {
+                ...state,
+                risk_game: payload
             }
         case UPDATE_SCALE:
             return {
