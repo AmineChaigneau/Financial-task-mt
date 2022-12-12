@@ -162,7 +162,7 @@ const Form = ({ update_form, subject_id, text, page }) => {
                 </>
             ) : (
                 <div className={style.intro}>
-                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.intro_test }} />
+                    {/* <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.intro_test }} /> */}
                     <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.bulshit_corps }} />
                     <Button onClick={() => setStart(true)}>
                         {text.button}

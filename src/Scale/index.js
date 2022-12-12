@@ -333,7 +333,7 @@ const Scale = ({ subject_id, update_question_scale, text, page }) => {
             {start ? (
                 <>
                     <div className={style.headerContainer}>
-                        <Typography variant={'h4'}><i>{text.scale_corps}</i></Typography>
+                        {/* <Typography variant={'h4'}><i>{text.scale_corps}</i></Typography> */}
                     </div>
                     <div className={style.container}>
                         {display()}

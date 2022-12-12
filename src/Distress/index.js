@@ -117,7 +117,7 @@ const Distress = ({ subject_id, text, page, update_distress_scale }) => {
             ) : (
                 <>
                     <div className={style.intro}>
-                        <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.intro_test }} />
+                        {/* <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.intro_test }} /> */}
                         <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.distress_header }} />
                         <Button onClick={() => setStart(true)}>
                             {text.button}

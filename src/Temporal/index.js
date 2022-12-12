@@ -151,7 +151,7 @@ const Temporal = ({ text, page, langue, subject_id, update_temporal_scale }) => 
                 </>
             ) : (
                 <div className={style.intro}>
-                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.intro_test }} />
+                    {/* <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.intro_test }} /> */}
                     <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.temporal_header }} />
                     <Button onClick={() => setStart(true)}>
                         {text.button}
