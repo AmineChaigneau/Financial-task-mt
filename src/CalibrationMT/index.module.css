@@ -19,6 +19,11 @@
     flex-flow: column;
     align-items: center;
     justify-content: center;
+    max-width: 90%;
+}
+
+.question > p {
+    text-align: center;
 }
 
 .start {

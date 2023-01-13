@@ -202,65 +202,65 @@ const Neuf = ({ value, onChange, text, handleNext }) => {
     )
 }
 
-const Dix = ({ value, onChange, text, handleNext }) => {
-    return (
-        <>
-            <div>
-                <div className={style.header}>
-                    <Typography variant={'h4'}>{text.scale_dix}</Typography>
-                </div>
-                <form className={style.form} value={value} onChange={onChange}>
-                    <RadioButton value={'1'} label={text.scale_dix_value[0]} />
-                    <RadioButton value={'2'} label={text.scale_dix_value[1]} />
-                    <RadioButton value={'3'} label={text.scale_dix_value[2]} />
-                </form>
-            </div>
-            <div className={style.button}>
-                <Button onClick={handleNext} disabled={!value.trim().length}>{text.button}</Button>
-            </div>
-        </>
-    )
-}
+// const Dix = ({ value, onChange, text, handleNext }) => {
+//     return (
+//         <>
+//             <div>
+//                 <div className={style.header}>
+//                     <Typography variant={'h4'}>{text.scale_dix}</Typography>
+//                 </div>
+//                 <form className={style.form} value={value} onChange={onChange}>
+//                     <RadioButton value={'1'} label={text.scale_dix_value[0]} />
+//                     <RadioButton value={'2'} label={text.scale_dix_value[1]} />
+//                     <RadioButton value={'3'} label={text.scale_dix_value[2]} />
+//                 </form>
+//             </div>
+//             <div className={style.button}>
+//                 <Button onClick={handleNext} disabled={!value.trim().length}>{text.button}</Button>
+//             </div>
+//         </>
+//     )
+// }
 
-const Onze = ({ value, onChange, text, handleNext }) => {
-    return (
-        <>
-            <div>
-                <div className={style.header}>
-                    <Typography variant={'h4'}>{text.scale_onze}</Typography>
-                </div>
-                <form className={style.form} value={value} onChange={onChange}>
-                    <RadioButton value={'1'} label={text.scale_onze_value[0]} />
-                    <RadioButton value={'2'} label={text.scale_onze_value[1]} />
-                    <RadioButton value={'3'} label={text.scale_onze_value[2]} />
-                </form>
-            </div>
-            <div className={style.button}>
-                <Button onClick={handleNext} disabled={!value.trim().length}>{text.button}</Button>
-            </div>
-        </>
-    )
-}
+// const Onze = ({ value, onChange, text, handleNext }) => {
+//     return (
+//         <>
+//             <div>
+//                 <div className={style.header}>
+//                     <Typography variant={'h4'}>{text.scale_onze}</Typography>
+//                 </div>
+//                 <form className={style.form} value={value} onChange={onChange}>
+//                     <RadioButton value={'1'} label={text.scale_onze_value[0]} />
+//                     <RadioButton value={'2'} label={text.scale_onze_value[1]} />
+//                     <RadioButton value={'3'} label={text.scale_onze_value[2]} />
+//                 </form>
+//             </div>
+//             <div className={style.button}>
+//                 <Button onClick={handleNext} disabled={!value.trim().length}>{text.button}</Button>
+//             </div>
+//         </>
+//     )
+// }
 
-const Douze = ({ value, onChange, text, handleNext }) => {
-    return (
-        <>
-            <div>
-                <div className={style.header}>
-                    <Typography variant={'h4'}>{text.scale_douze}</Typography>
-                </div>
-                <form className={style.form} value={value} onChange={onChange}>
-                    <RadioButton value={'1'} label={text.scale_douze_value[0]} />
-                    <RadioButton value={'2'} label={text.scale_douze_value[1]} />
-                    <RadioButton value={'3'} label={text.scale_douze_value[2]} />
-                </form>
-            </div>
-            <div className={style.button}>
-                <Button onClick={handleNext} disabled={!value.trim().length}>{text.button}</Button>
-            </div>
-        </>
-    )
-}
+// const Douze = ({ value, onChange, text, handleNext }) => {
+//     return (
+//         <>
+//             <div>
+//                 <div className={style.header}>
+//                     <Typography variant={'h4'}>{text.scale_douze}</Typography>
+//                 </div>
+//                 <form className={style.form} value={value} onChange={onChange}>
+//                     <RadioButton value={'1'} label={text.scale_douze_value[0]} />
+//                     <RadioButton value={'2'} label={text.scale_douze_value[1]} />
+//                     <RadioButton value={'3'} label={text.scale_douze_value[2]} />
+//                 </form>
+//             </div>
+//             <div className={style.button}>
+//                 <Button onClick={handleNext} disabled={!value.trim().length}>{text.button}</Button>
+//             </div>
+//         </>
+//     )
+// }
 
 const Scale = ({ subject_id, update_question_scale, text, page }) => {
 
@@ -276,9 +276,9 @@ const Scale = ({ subject_id, update_question_scale, text, page }) => {
         q3: '',
         q4: '',
         q5: '',
-        l1: '',
-        l2: '',
-        l3: ''
+        // l1: '',
+        // l2: '',
+        // l3: ''
     })
 
     const [state, setState] = useState(1);
@@ -304,13 +304,13 @@ const Scale = ({ subject_id, update_question_scale, text, page }) => {
             case 8:
                 return <Huit value={data.q4} onChange={(e) => setData({ ...data, q4: e.target.value })} text={text} handleNext={handleNext} />
             case 9:
-                return <Neuf value={data.q5} onChange={(e) => setData({ ...data, q5: e.target.value })} text={text} handleNext={handleNext} />
-            case 10:
-                return <Dix value={data.l1} onChange={(e) => setData({ ...data, l1: e.target.value })} text={text} handleNext={handleNext} />
-            case 11:
-                return <Onze value={data.l2} onChange={(e) => setData({ ...data, l2: e.target.value })} text={text} handleNext={handleNext} />
-            case 12:
-                return <Douze value={data.l3} onChange={(e) => setData({ ...data, l3: e.target.value })} text={text} handleNext={handleRedirect} />
+                return <Neuf value={data.q5} onChange={(e) => setData({ ...data, q5: e.target.value })} text={text} handleNext={handleRedirect} />
+            // case 10:
+            //     return <Dix value={data.l1} onChange={(e) => setData({ ...data, l1: e.target.value })} text={text} handleNext={handleNext} />
+            // case 11:
+            //     return <Onze value={data.l2} onChange={(e) => setData({ ...data, l2: e.target.value })} text={text} handleNext={handleNext} />
+            // case 12:
+            //     return <Douze value={data.l3} onChange={(e) => setData({ ...data, l3: e.target.value })} text={text} handleNext={handleRedirect} />
             default:
                 return <Typography variant={'h4'}>{text.scale_corps1}</Typography>
         }

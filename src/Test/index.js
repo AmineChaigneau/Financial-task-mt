@@ -97,13 +97,15 @@ const Test = ({ text, update_risk_game, page }) => {
         return ans;
     }
 
-    const arr = range(0, 99)
+    let nbox = 64;
 
-    const [bomb, setBomb] = useState(Math.round(getRandomArbitrary(0, 99)))
+    const arr = range(0, (nbox-1))
 
-    const [checkedBox, setCheckedBox] = useState(new Array(100).fill(false))
+    const [bomb, setBomb] = useState(Math.round(getRandomArbitrary(0, (nbox-1))))
 
-    const [show, setShow] = useState(new Array(100).fill(false))
+    const [checkedBox, setCheckedBox] = useState(new Array(nbox).fill(false))
+
+    const [show, setShow] = useState(new Array(nbox).fill(false))
 
     const [disabled, setDisabled] = useState({ start: false, stop: true, reveal: true, output: true })
 
@@ -126,8 +128,8 @@ const Test = ({ text, update_risk_game, page }) => {
         // console.log('init')
         if (isActive && isPaused === false) {
             interval = setInterval(() => {
-                setTime((time) => time + 700);
-            }, 700);
+                setTime((time) => time + 600);
+            }, 600);
         } else {
             clearInterval(interval);
             // console.log('clear')
@@ -141,7 +143,7 @@ const Test = ({ text, update_risk_game, page }) => {
     useEffect(() => {
         if (isActive && isPaused === false) {
 
-            if (value < 100) {
+            if (value < nbox) {
                 const newArr = [...checkedBox]
     
                 const indices = newArr.flatMap((bool, index) => bool ? [] : index)
@@ -187,7 +189,7 @@ const Test = ({ text, update_risk_game, page }) => {
         // console.log(bomb)
         // console.log(checkedBox)
 
-        setCheckedBox(new Array(100).fill(false))
+        setCheckedBox(new Array(nbox).fill(false))
         setDisabled({ ...disabled, start: true, output: false, reveal: true })
     }
 
@@ -198,9 +200,9 @@ const Test = ({ text, update_risk_game, page }) => {
 
         setRound(round + 1)
 
-        setBomb(Math.round(getRandomArbitrary(0, 99)))
+        setBomb(Math.round(getRandomArbitrary(0, (nbox-1))))
 
-        setShow(new Array(100).fill(false))
+        setShow(new Array(nbox).fill(false))
 
         setDisabled({ ...disabled, start: false, stop: true, reveal: true, output: true })
 
@@ -233,7 +235,7 @@ const Test = ({ text, update_risk_game, page }) => {
                     </div>
                     <div className={style.label}>
                         <Typography variant={'h5'}>{text.bomb_revard2}</Typography>
-                        <Typography variant={'h4'}>{100 - value}</Typography>
+                        <Typography variant={'h4'}>{nbox - value}</Typography>
                     </div>
                 </div>
                 <div className={style.boxOutput} style={{ visibility: disabled.output ? 'hidden' : 'visible' }}>
@@ -248,19 +250,19 @@ const Test = ({ text, update_risk_game, page }) => {
                             <Typography variant={'h4'}>{value}</Typography>
                         </div>
                     )}
-                    {round === 3 ? (
+                    {round === 6 ? (
                         <Button onClick={handleRedirect} style={{ display: disabled.output ? 'none' : '' }}>
                             {text.button}
                         </Button>
                     ) : (
                         <Button onClick={handleNextRound} style={{ display: disabled.output ? 'none' : '' }}>
-                            {text.button4} ({round}/3)
+                            {text.button4} ({round}/6)
                         </Button>
                     )}
                 </div>
             </div>
             <div className={style.action}>
-                <Button disabled={disabled.start} onClick={handleTrialStart}>{text.button1}</Button>
+                <Button disabled={disabled.start} onClick={handleTrialStart}>{text.button1}</Button> 
                 <Button disabled={disabled.stop} onClick={handlePause}>{text.button5}</Button>
                 <Button disabled={disabled.reveal} onClick={handleEndTrial}>{text.button6}</Button>
             </div>

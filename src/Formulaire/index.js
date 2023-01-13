@@ -13,10 +13,13 @@ const Formulaire = ({ subject_id, update_formulaire, text, page }) => {
 
     const navigate = useNavigate()
 
+    const [err, setErr] = useState(false)
+
     const [formData, setFormData] = useState({
         age: '',
         genre: '',
         profession: '',
+        paye: '',
         main: '',
         souris: '',
         accept: false
@@ -35,9 +38,14 @@ const Formulaire = ({ subject_id, update_formulaire, text, page }) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        update_formulaire({form : formData, subject_id: subject_id})
+        update_formulaire({ form: formData, subject_id: subject_id })
         page();
         navigate('/calibration')
+    }
+
+    const handleError = (e) => {
+        e.preventDefault()
+        setErr(true)
     }
 
     return (
@@ -79,6 +87,22 @@ const Formulaire = ({ subject_id, update_formulaire, text, page }) => {
                     <TextArea id='profession' name='profession' onChange={handleChange}></TextArea>
                 </div>
                 <div className={style.content}>
+                    <div className={style.labelContainer}>
+                        <p className={style.label}>{text.form_pay}</p>
+                        {err && <p className={style.label} style={{ color: 'red', marginLeft: 10 }}>Only numbers accepted</p>}
+                    </div>
+                    <TextArea
+                        id='paye'
+                        name='paye'
+                        onChange={handleChange}
+                        onKeyPress={(event) => {
+                            if (!/[0-9]/.test(event.key)) {
+                                handleError(event)
+                            }
+                        }}
+                    ></TextArea>
+                </div>
+                <div className={style.content}>
                     <Select label="Quelle est votre main dominante ?" id='main' name='main' onChange={handleChange}>
                         <option value={''}>{text.form_main[0]} *</option>
                         <option value={'d'}>{text.form_main[1]}</option>
@@ -93,7 +117,7 @@ const Formulaire = ({ subject_id, update_formulaire, text, page }) => {
                     </Select>
                 </div>
                 <div className={style.button}>
-                    <Typography dangerouslySetInnerHTML={{__html: text.form_accept }} />
+                    <Typography dangerouslySetInnerHTML={{ __html: text.form_accept }} />
                     <Button type='submit'
                         disabled={
                             !formData.age.trim().length
