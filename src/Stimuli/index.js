@@ -27,7 +27,7 @@ function useInterval(callback, delay) {
     }, [delay]);
 }
 
-const Stimuli = ({ trial_global, update_trials, update_current, nb_trial }) => {
+const Stimuli = ({ trial_global, update_trials, update_current, time_stimuli }) => {
 
     const navigate = useNavigate()
 
@@ -35,7 +35,7 @@ const Stimuli = ({ trial_global, update_trials, update_current, nb_trial }) => {
 
     const fixation = useRef();
 
-    const timer = useRef(null);
+    // const timer = useRef(null);
 
     const [time, setTime] = useState(true)
 
@@ -77,10 +77,11 @@ const Stimuli = ({ trial_global, update_trials, update_current, nb_trial }) => {
     useInterval(() => {
         // Your custom logic here
         setChrono(chrono + 500);
-        if(chrono === 31500) {
+        if(chrono === 1500) {
             setTimeLim(true)
             console.log('shortcut active')
-        } else if (!skip && chrono === 61500) {
+        // } else if (!skip && chrono === 21500) { // créer value 
+        } else if (!skip && chrono === ((time_stimuli*1000)+1500)) { 
             console.log('redirect')
             navigate('/choice')
             update_trials(trial.index)
@@ -131,18 +132,6 @@ const Stimuli = ({ trial_global, update_trials, update_current, nb_trial }) => {
     //     };
     // }, [])
 
-    // const handleSkip = () => {
-    //     if (timeLim) {
-    //         setSkip(true)
-    //         navigate('/choice')
-    //         update_trials(trial.index)
-    //         update_current(trial.id_trial)
-    //         console.log(skipRef.current)
-    //     } else {
-    //         console.log('shortcut disabled')
-    //     }
-    // }
-
     const handleSkip = () => {
         if(timeLim) {
             setSkip(true)
@@ -156,7 +145,7 @@ const Stimuli = ({ trial_global, update_trials, update_current, nb_trial }) => {
         }
     }
 
-    useKeyPress([' '], () => handleSkip())
+    useKeyPress(['a'], () => handleSkip())
 
     return (
         <div className={style.root}>
@@ -181,6 +170,7 @@ const Stimuli = ({ trial_global, update_trials, update_current, nb_trial }) => {
 const mapStateToProps = state => ({
     trial_global: state.trialsReducer.trial,
     nb_trial: state.exportReducer.nb_trial,
+    time_stimuli: state.textReducer.time
 })
 
 export default connect(mapStateToProps, { update_trials, update_current })(Stimuli)

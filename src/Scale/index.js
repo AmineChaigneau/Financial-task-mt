@@ -104,8 +104,6 @@ const Cinq = ({ value, onChange, text, handleNext }) => {
                     <RadioButton value={'1'} label={text.scale_cinq_value[0]} />
                     <RadioButton value={'2'} label={text.scale_cinq_value[1]} />
                     <RadioButton value={'3'} label={text.scale_cinq_value[2]} />
-                    <RadioButton value={'4'} label={text.scale_cinq_value[3]} />
-                    <RadioButton value={'5'} label={text.scale_cinq_value[4]} />
                 </form>
             </div>
             <div className={style.button}>
@@ -126,8 +124,6 @@ const Six = ({ value, onChange, text, handleNext }) => {
                     <RadioButton value={'1'} label={text.scale_six_value[0]} />
                     <RadioButton value={'2'} label={text.scale_six_value[1]} />
                     <RadioButton value={'3'} label={text.scale_six_value[2]} />
-                    <RadioButton value={'4'} label={text.scale_six_value[3]} />
-                    <RadioButton value={'5'} label={text.scale_six_value[4]} />
                 </form>
             </div>
             <div className={style.button}>
@@ -149,8 +145,6 @@ const Sept = ({ value, onChange, text, handleNext }) => {
                     <RadioButton value={'2'} label={text.scale_sept_value[1]} />
                     <RadioButton value={'3'} label={text.scale_sept_value[2]} />
                     <RadioButton value={'4'} label={text.scale_sept_value[3]} />
-                    <RadioButton value={'5'} label={text.scale_sept_value[4]} />
-                    <RadioButton value={'6'} label={text.scale_sept_value[5]} />
                 </form>
             </div>
             <div className={style.button}>
@@ -170,8 +164,6 @@ const Huit = ({ value, onChange, text, handleNext }) => {
                 <form className={style.form} value={value} onChange={onChange}>
                     <RadioButton value={'1'} label={text.scale_neuf_huit_value[0]} />
                     <RadioButton value={'2'} label={text.scale_neuf_huit_value[1]} />
-                    <RadioButton value={'3'} label={text.scale_neuf_huit_value[2]} />
-                    <RadioButton value={'4'} label={text.scale_neuf_huit_value[3]} />
                 </form>
             </div>
             <div className={style.button}>
@@ -191,8 +183,6 @@ const Neuf = ({ value, onChange, text, handleNext }) => {
                 <form className={style.form} value={value} onChange={onChange}>
                     <RadioButton value={'1'} label={text.scale_neuf_huit_value[0]} />
                     <RadioButton value={'2'} label={text.scale_neuf_huit_value[1]} />
-                    <RadioButton value={'3'} label={text.scale_neuf_huit_value[2]} />
-                    <RadioButton value={'4'} label={text.scale_neuf_huit_value[3]} />
                 </form>
             </div>
             <div className={style.button}>
@@ -341,7 +331,10 @@ const Scale = ({ subject_id, update_question_scale, text, page }) => {
                 </>
             ) : (
                 <div className={style.intro}>
-                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.intro_test }} />
+                    {/* <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.intro_test}} /> */}
+                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.intro_test1 }} />
+                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.intro_test2 }} />
+                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.intro_test3 }} />
                     <Button onClick={() => setStart(true)}>
                         {text.button}
                     </Button>

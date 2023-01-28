@@ -39,7 +39,7 @@ const Un = ({ onClick, text, langue }) => {
                 </div>
             </div>
             <div className={style.image}>
-                <img alt='' src={langue === 'en' ? image_en : langue === 'it' ? image_it : image}  />
+                <img alt='' src={langue === 'en' ? image_en : langue === 'it' ? image_it : image} />
                 <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.consigne_image1 }} />
             </div>
         </>
@@ -95,16 +95,33 @@ const Quatre = ({ langue }) => {
     )
 }
 
-// Ancien 2 (image)
 const Cinq = ({ onClick, text }) => {
+
+    return (
+        <div className={style.contentText}>
+            <div className={style.text}>
+                <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.consigne_cinq_corps1 }} />
+                <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.consigne_cinq_corps2 }} />
+            </div>
+            <div className={style.button}>
+                <Button onClick={onClick} disabled={false}>
+                    {text.button}
+                </Button>
+            </div>
+        </div>
+    )
+}
+
+// Ancien 2 (image)
+const Six = ({ onClick, text }) => {
 
     return (
         <>
             <div className={style.content}>
                 <div className={style.text}>
-                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.consigne_cinq_corps1 }} />
-                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.consigne_cinq_corps2 }} />
-                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.consigne_cinq_corps3 }} />
+                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.consigne_six_corps1 }} />
+                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.consigne_six_corps2 }} />
+                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.consigne_six_corps3 }} />
                 </div>
                 <div className={style.button}>
                     <Button onClick={onClick} disabled={false}>
@@ -119,7 +136,6 @@ const Cinq = ({ onClick, text }) => {
         </>
     )
 }
-
 
 const Consigne = ({ text, langue, page }) => {
 
@@ -140,11 +156,11 @@ const Consigne = ({ text, langue, page }) => {
     const timer = useRef(null);
 
     useEffect(() => {
-        if(state == 4) {
+        if (state === 4) {
             console.log('start timer')
             timer.current = setTimeout(() => {
-                setState(state+1)
-            }, 30000)
+                setState(state + 1)
+            }, 90000)
         } else {
             console.log(state)
         }
@@ -155,13 +171,15 @@ const Consigne = ({ text, langue, page }) => {
             case 1:
                 return <Un onClick={handleClick} text={text} langue={langue} />
             case 2:
-                return <Deux onClick={handleClick} text={text} langue={langue}/>
+                return <Deux onClick={handleClick} text={text} langue={langue} />
             case 3:
                 return <Trois onClick={handleClick} text={text} />
             case 4:
                 return <Quatre onClick={handleClick} text={text} langue={langue} />
             case 5:
-                return <Cinq onClick={handleRedirect} text={text} />
+                return <Cinq onClick={handleClick} text={text} />
+            case 6:
+                return <Six onClick={handleRedirect} text={text} />
             default:
                 return <div>Err</div>
         }

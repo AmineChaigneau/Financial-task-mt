@@ -39,6 +39,18 @@
     margin-right: 20px;
 }
 
+.contentText {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.contentText > div > p {
+    text-align: center;
+}
+
 .button {
     width: 100%;
     display: flex;

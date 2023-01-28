@@ -264,7 +264,7 @@ const Test = ({ text, update_risk_game, page }) => {
             <div className={style.action}>
                 <Button disabled={disabled.start} onClick={handleTrialStart}>{text.button1}</Button> 
                 <Button disabled={disabled.stop} onClick={handlePause}>{text.button5}</Button>
-                <Button disabled={disabled.reveal} onClick={handleEndTrial}>{text.button6}</Button>
+                <Button disabled={disabled.reveal || disabled.start} onClick={handleEndTrial}>{text.button6}</Button>
             </div>
         </div>
     )

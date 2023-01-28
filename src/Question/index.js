@@ -35,7 +35,7 @@ const Deux = ({ slider, onClick, value, onChange, text }) => {
         <>
             <div className={style.container}>
                 <div className={style.header}>
-                    <Typography variant={'h4'} dangerouslySetInnerHTML={{__html: text.question_deux_q }}/>
+                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.question_deux_q }} />
                 </div>
                 <div className={style.rangeNumber}>
                     <RangeNumber name={''} max={7} value={value} onChange={onChange} />
@@ -101,6 +101,8 @@ const Question = ({ nb_trial, update_form_trial, update_form_trial_list, text, p
 
     const [value, setValue] = useState('')
 
+    const [val, setVal] = useState('')
+
     const [options, setOptions] = useState([
         { label: text.question_quatre_options[0], value: '' },
         { label: text.question_quatre_options[1], value: '' },
@@ -109,6 +111,8 @@ const Question = ({ nb_trial, update_form_trial, update_form_trial_list, text, p
     ]);
 
     const [completed, setCompleted] = useState(false)
+
+    const [next, setNext] = useState(false)
 
     const isCompleted = (currentValue) => currentValue.value.trim().length
 
@@ -126,32 +130,38 @@ const Question = ({ nb_trial, update_form_trial, update_form_trial_list, text, p
         navigate('/stimuli')
     }
 
+    // ici a store autre part et renvoyer dans handleEnd (ajouter la valeur a .map)
+    const handleNext = () => {
+        page();
+        setNext(true)
+    }
+
     const handleEnd = () => {
         // update_form_trial(value)
         page();
-        update_form_trial_list(options.map((option) => option.value))
+        // update_form_trial_list(options.map((option) => option.value))
+        update_form_trial_list([val].concat(options.map((option) => option.value)))
         navigate('/scale')
     }
 
     return (
         <div className={style.root}>
             {nb_trial === 1 ? (
-                <Un onClick={handleRedirect} onChange={(e) => setValue(e.target.value)} value={value} text={text}/>
+                <Un onClick={handleRedirect} onChange={(e) => setValue(e.target.value)} value={value} text={text} />
             ) : (
-                <div className={style.root}>
+                <>
                     {nb_trial === 6 ? (
-                        <Deux onClick={handleRedirect} onChange={(e) => setValue(e.target.value)} value={value} text={text}/>
+                        <Trois onClick={handleRedirect} onChange={(e) => setValue(e.target.value)} value={value} text={text} />
                     ) : (
-                        <div className={style.root}>
-                            {nb_trial === 7 ? (
-                                <Trois onClick={handleRedirect} onChange={(e) => setValue(e.target.value)} value={value} text={text}/>
-                            ) : (
-                                <div className={style.root}>
-                                    {nb_trial === 12 ? (
-                                        // <Quatre onClick={handleEnd} onChange={handleChange} value={value} />
+                        <>
+                            {nb_trial === 24 ? (
+                                <>
+                                    {!next ? (
+                                        <Deux onClick={handleNext} onChange={(e) => setVal(e.target.value)} value={val} text={text} />
+                                    ) : (
                                         <div className={style.container}>
                                             <div className={style.header}>
-                                                <Typography variant={'h4'} dangerouslySetInnerHTML={{__html: text.question_quatre_q }}/>
+                                                <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.question_quatre_q }} />
                                             </div>
                                             {options.map((option, index) =>
                                                 <div className={style.wrapper} key={index}>
@@ -168,16 +178,61 @@ const Question = ({ nb_trial, update_form_trial, update_form_trial_list, text, p
                                                 <Button disabled={!completed} onClick={handleEnd}>{text.button}</Button>
                                             </div>
                                         </div>
-                                    ) : (
-                                        <div>Erreur</div>
                                     )}
-                                </div>
+                                </>
+                            ) : (
+                                <div>Erreur</div>
                             )}
-                        </div>
+                        </>
                     )}
-                </div>
+                </>
             )}
         </div>
+
+
+        //     {nb_trial === 1 ? (
+        //         <Un onClick={handleRedirect} onChange={(e) => setValue(e.target.value)} value={value} text={text}/>
+        //     ) : (
+        //         <div className={style.root}>
+        //             {nb_trial === 6 ? (
+        //                 <Deux onClick={handleRedirect} onChange={(e) => setValue(e.target.value)} value={value} text={text}/>
+        //             ) : (
+        //                 <div className={style.root}>
+        //                     {nb_trial === 24 ? (
+        //                         <Trois onClick={handleRedirect} onChange={(e) => setValue(e.target.value)} value={value} text={text}/>
+        //                     ) : (
+        //                         <div className={style.root}>
+        //                             {nb_trial === 24 ? (
+        //                                 // <Quatre onClick={handleEnd} onChange={handleChange} value={value} />
+        //                                 <div className={style.container}>
+        //                                     <div className={style.header}>
+        //                                         <Typography variant={'h4'} dangerouslySetInnerHTML={{__html: text.question_quatre_q }}/>
+        //                                     </div>
+        //                                     {options.map((option, index) =>
+        //                                         <div className={style.wrapper} key={index}>
+        //                                             <Typography variant={'h4'}>{option.label} :</Typography>
+        //                                             <RangeSlider label={option.label} value={option.value} onChange={handleChange(index)} />
+        //                                             <div className={style.label}>
+        //                                                 <p>{text.question_quatre_lab[0]}</p>
+        //                                                 <p>{text.question_quatre_lab[1]}</p>
+        //                                             </div>
+        //                                             <Divider />
+        //                                         </div>
+        //                                     )}
+        //                                     <div className={style.button}>
+        //                                         <Button disabled={!completed} onClick={handleEnd}>{text.button}</Button>
+        //                                     </div>
+        //                                 </div>
+        //                             ) : (
+        //                                 
+        //                             )}
+        //                         </div>
+        //                     )}
+        //                 </div>
+        //             )}
+        //         </div>
+        //     )}
+        // </div>
     )
 }
 

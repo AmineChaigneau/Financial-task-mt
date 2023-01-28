@@ -21,10 +21,7 @@ const Temp = ({ update_res, current_trial, nb_trial, page }) => {
             } else if (nb_trial === 5) {
                 update_res(current_trial)
                 navigate('/question')
-            } else if (nb_trial === 6) {
-                update_res(current_trial)
-                navigate('/question')
-            } else if (nb_trial === 11) {
+            } else if (nb_trial === 23) {
                 update_res(current_trial)
                 navigate('/question')
             } else {

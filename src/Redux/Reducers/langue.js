@@ -4,7 +4,8 @@ import { fr } from '../../Component/ressources/text'
 const initialState = {
     langue: 'fr',
     text: fr,
-    invert: false
+    invert: false,
+    time: 20
 }
 
 export default function textReducer(state = initialState, action) {
@@ -16,7 +17,8 @@ export default function textReducer(state = initialState, action) {
             return {
                 ...state,
                 langue: payload.langue,
-                text: payload.text
+                text: payload.text,
+                time: payload.time
             }
     case UPDATE_LANGUE_FAIL:
             return {

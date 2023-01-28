@@ -13,8 +13,9 @@ import { Typography } from '../Component/styles/typography.styled'
 import { ButtonIcon } from '../Component/button.styled'
 import { trials_en, trials_it } from '../Component/ressources/stimuli_list'
 import { Checkbox } from '../Component/checkbox.styled'
+import { TextArea } from '../Component/textarea.styled'
 
-const Langue = ({ resetStore, choose_langue, load_trial_list, set_invert}) => {
+const Langue = ({ resetStore, choose_langue, load_trial_list, set_invert }) => {
 
     useEffect(() => {
         resetStore()
@@ -24,31 +25,48 @@ const Langue = ({ resetStore, choose_langue, load_trial_list, set_invert}) => {
 
     const handleClickFr = () => {
         navigate('./home')
-        choose_langue({langue: 'fr', text: fr});
+        choose_langue({ langue: 'fr', text: fr, time: Number(timer) });
         set_invert(checked)
     }
 
     const handleClickIt = () => {
         navigate('./home')
-        choose_langue({langue: 'it', text: it});
+        choose_langue({ langue: 'it', text: it, time: Number(timer) });
         load_trial_list(trials_it)
         set_invert(checked)
     }
 
     const handleClickEn = () => {
         navigate('./home')
-        choose_langue({langue: 'en', text: en});
+        choose_langue({ langue: 'en', text: en, time: Number(timer) });
         load_trial_list(trials_en)
         set_invert(checked)
     }
 
     const [checked, setChecked] = useState(false)
 
+    const [timer, setTimer] = useState(20)
+
     return (
         <div className={style.root}>
-            <div className={style.invert}>
-                <Typography variant={'h4'}><strong>Invert response</strong></Typography>
-                <Checkbox checked={checked} onChange={() => setChecked(!checked)}/>
+            <div className={style.container}>
+                <div className={style.invert}>
+                    <Typography variant={'h4'}><strong>Invert response</strong></Typography>
+                    <Checkbox checked={checked} onChange={() => setChecked(!checked)} />
+                </div>
+                <div className={style.stimuli}>
+                    <Typography>Stimuli time (s)</Typography>
+                    <TextArea
+                        id='timer'
+                        name='timer'
+                        onChange={(e) => setTimer(e.target.value)}
+                        onKeyPress={(event) => {
+                            if (!/[0-9]/.test(event.key)) {
+                                alert('only numbers')
+                            }
+                        }}
+                    />
+                </div>
             </div>
             <Typography variant={'h4'}>
                 First, choose your <strong>language</strong>.
