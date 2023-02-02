@@ -31,6 +31,7 @@ const Un = ({ onClick, text, langue }) => {
                     <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.consigne_un_corps1 }} />
                     <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.consigne_un_corps2 }} />
                     <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.consigne_un_corps3 }} />
+                    <Typography variant={'h4'} dangerouslySetInnerHTML={{ __html: text.consigne_un_corps4 }} />
                 </div>
                 <div className={style.button}>
                     <Button onClick={onClick} disabled={false}>
